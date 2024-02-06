@@ -139,6 +139,7 @@
                 <input id="signup-password" name="password" type="password" placeholder="Password" required>
                 <input id="signup-id" name="id" type="id" placeholder="Student ID / Roll No." required>
                 <input id="signup-program" name="program" type="text" placeholder="Program Eg BD1 2023-2025" required>
+                <p>Reenter password</p>
                 <button id="signupbtn" class="button" type="button" onclick="register()">Register</button>
                 <br>
                 <a class="btn" href="./pcpauth.html">Login</a>
@@ -230,7 +231,7 @@
                 }
                 else {
                     enablesignupbtn()
-                    swal.fire("Success!", "Please wait while Kaustubh Sir approves your request", "success");
+                    swal.fire("Success!", "Please login with your credentials", "success");
                 }
             }
         }

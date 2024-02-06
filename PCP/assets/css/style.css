@@ -274,10 +274,11 @@
         font-size: 0.75rem;
     }
 }
+
 /*--------------------------------------------------------------
 # auth pages
 --------------------------------------------------------------*/
-.disabled{
+.disabled {
     color: transparent;
 }
 
@@ -316,7 +317,7 @@
     z-index: 2;
 }
 
-#Media{
+#Media {
     overflow-y: scroll;
     max-height: 100px;
 }
@@ -332,20 +333,23 @@
     /* Safari */
     animation: spin 2s linear infinite;
 }
-.del{
+
+.del {
     height: 20px;
 }
 
 .fixedButton {
-    
+
     position: fixed;
     bottom: 0px;
     right: 0px;
     padding: 30px;
 }
-.hidden{
+
+.hidden {
     display: none;
 }
+
 .roundedFixedBtn {
     height: 60px;
     line-height: 80px;
@@ -364,11 +368,11 @@
     font-size: 12px;
 }
 
-.media-card{
+.media-card {
     width: fit-content;
-    border-width: 1px!important;
-    border-radius: 10px!important;
-    border-color: #000!important;
+    border-width: 1px !important;
+    border-radius: 10px !important;
+    border-color: #000 !important;
 }
 
 /*--------------------------------------------------------------
@@ -395,3 +399,90 @@
         transform: rotate(360deg);
     }
 }
+
+/*--------------------------------------------------------------
+# Faculty Home / View more
+--------------------------------------------------------------*/
+.back_btn{
+    height:48px;
+    width: 48px;
+}
+
+.title {
+    color: #412B76 !important;
+    font-family: Montserrat;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.domain {
+    color: #412B76 !important;
+    font-family: Montserrat;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.subsection-header {
+    color: #31AE0E;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.subsection-content {
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.studentinfoSectiondiv {
+    float: right;
+    /* width: 150px; */
+    /* height: 150px; */
+    margin: 10px;
+    /* background-color: #10dbff; */
+}
+
+.studentinforow {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: #f8f9fa;
+}
+
+.purple_border {
+    border: 1px solid #7B61FF !important;
+
+}
+
+.remark_header {
+    color: #412B76;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.remark_content {
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/*--------------------------------------------------------------
+# Faculty Home / View more End
+--------------------------------------------------------------*/

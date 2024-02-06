@@ -291,6 +291,10 @@ function renderpp() {
 
 function renderfacultypp() {
     const PSlist = document.getElementById("PSList");
+    const filterbar = document.getElementById("filterbar")
+    const PSHeader = document.getElementById("PSHeader")
+    filterbar.removeAttribute("hidden")
+    PSHeader.removeAttribute("hidden")
     PSlist.innerHTML = ""
     if (filteredPP.length <= 0) {
         filteredPP = GPP
@@ -524,39 +528,85 @@ function renderviewMore(uuid) {
         }
     })
     const PSList = document.getElementById("PSList")
+    const filterbar = document.getElementById("filterbar")
+    const PSHeader = document.getElementById("PSHeader")
+    filterbar.setAttribute("hidden",true)
+    PSHeader.setAttribute("hidden",true)
     PSList.innerHTML = ""
     PSList.innerHTML += `
-        <div onclick="renderfacultypp()" class="btn">
-        <img 
-        src="./assets/img/circle-arrow-left-solid.svg" 
-        alt="Back to Pain PointList" 
-        style="height: 2rem; width: 2rem;">
-        </div>
-        <div class="d-flex justify-content-between ">
-            <div>
-                <div id="P-title" class="h4 title-right">${pp.title}</div>
-                <div id="P-domain" class="domain-right">${pp.domain}</div>
+        
+    <div class="d-flex flex-row">
+                <div class="d-flex flex-column btn back_btn" onclick="renderfacultypp()">
+                    <img src="./assets/img/circle-arrow-left-solid.svg" alt="Back to Pain PointList">
+                </div>
+                <div class="d-flex flex-column" style="background-color: rgb(255, 255, 255); width: 100%;">
+                    <div class="d-flex justify-content-between ">
+                        <div>
+                            <div id="P-title" class="h4 title">
+                                <span id="P-ID">${pp.uuid}</span>
+                                ${pp.title}
+                            </div>
+                            <div id="P-domain" class="domain">${pp.domain}</div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex flex-column p-2">
+                        <div class="subsection-header">Description</div>
+                        <div class="subsection-content" id="description">
+                            ${pp.description}
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column p-2">
+                        <div class="subsection-header">Solution</div>
+                        <div class="subsection-content" id="solution">
+                            ${pp.solution}
+                        </div>
+                    </div>
+
+                    <div class="p-2" id="media">
+
+                    </div>
+                    <div class="studentinfoSectiondiv">
+                        <div class="subsection-header">Student Info</div>
+                        <div class="subsection-content">
+                            <table>
+                                <tr class="">
+                                    <td class="studentinforow col p-1">Name</td>
+                                    <td class="studentinforow col p-1">: ${pp.name}</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="studentinforow col p-1">Program</td>
+                                    <td class="studentinforow col p-1">: ${pp.program}</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="studentinforow col p-1">ID/Roll no</td>
+                                    <td class="studentinforow col p-1">: ${pp.std_ID}</td>
+                                </tr>
+                                <tr class="">
+                                    <td class="studentinforow col p-1">Email</td>
+                                    <td class="studentinforow col p-1">: ${pp.email}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="p-2" id="remarkssection">
+                        <div class="mb-3">
+                            <label for="remarkedittext" class="form-label subsection-header">Remarks</label>
+                            <textarea class="form-control description purple_border" id="remarkedittext"
+                                rows="3"></textarea>
+                            <div class="mt-3 mb-3 d-flex justify-content-end">
+
+                                <button id="saveremarkbtn" type="button" class="btn btn-outline-primary shadow purple_border"
+                                    onclick=saveremark()>Save</button>
+                            </div>
+                            <div class="line"></div>
+                            <div id="RemarksSection">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-            
-        <div class="d-flex flex-column p-2">
-            <div class="title">Description</div>
-            <div class="description" id="description">
-            ${pp.description}
-            </div>
-        </div>
-        <div class="d-flex flex-column p-2">
-            <div class="title">Solution</div>
-            <div class="description" id="solution">
-            ${pp.solution}
-            </div>
-        </div>
-        <div class="p-2" id="media">
-            
-        </div>
-        <div class="p-2" id="remarkssection">
-            
-        </div>
+
         `
     // render media if present
     const mediadiv = document.getElementById("media")
@@ -566,16 +616,98 @@ function renderviewMore(uuid) {
         var media = JSON.parse(pp.media)
         media.forEach(i => {
             mediadiv.innerHTML += `
-                <a class="p-1 media-card btn" href="${i.fileUrl}" target="_blank">
-                    <div class="title">${i.filename}</div>
-                </a>
+            <img src="${i.fileUrl}" alt="${i.filename}" srcset="">
+
+                
                 `
         })
+    }
+    getremarks(uuid)
+}
 
-        // TODO: render remarks if present
+
+/* show on page functions */
+
+/* Remarks Section */
+async function getremarks(uuid) {
+    const RemarksSection = document.getElementById("RemarksSection");
+    RemarksSection.innerText = "Loading remarks";
+    data = {
+        url: v300,
+        params: {
+            code: "readremarks",
+            uuid: uuid,
+        },
+    };
+    console.log("remarks data", data);
+
+    const query = encodeQuery(data);
+    const response = await fetch(query);
+    const res = await response.json();
+    if (response.status != 200) alert("Request returnde status code", res.status);
+    if (response.status === 200) {
+        console.log("remarks", res);
+        if (res.length === 0) {
+            RemarksSection.innerText = "No Remarks yet";
+        }
+
+        let sortedres = res.sort(function (a, b) {
+            return b.timestamp.localeCompare(a.timestamp);
+        });
+
+        RemarksSection.innerHTML = "";
+
+        sortedres.forEach((i) => {
+            RemarksSection.innerHTML += `
+            <div class="remark_header m-1">
+                ${i.givenby}
+            </div>
+            <div class="card shadow p-2">
+                <div class="d-flex flex-row">
+                    <div class="remark_content"> ${i.remark}</div>
+                </div>
+            </div>
+            `;
+        });
     }
 }
-/* show on page functions */
+
+
+async function saveremark() { // continue here 06/02
+    // swal.fire("Info", "Please wait", "info");
+    var remarkedittext = document.getElementById("remarkedittext");
+    var saveremarkbtn = document.getElementById("saveremarkbtn");
+    var remark = remarkedittext.value;
+    console.log("remark value", remark.length);
+    if (remark.length <= 0) {
+        swal.fire("Error", "Remark cannot be empty", "error");
+        return
+    }
+    swal.fire("Info", "Please wait", "info");
+    saveremarkbtn.setAttribute("disabled",true)
+    var uuid = document.getElementById("P-ID").innerText
+    data = {
+        url: v300,
+        params: {
+            code: "remark",
+            uuid: uuid,
+            givenby: user.name,
+            remark: remark,
+        },
+    };
+    const query = encodeQuery(data);
+    const response = await fetch(query);
+    const res = await response.json();
+    saveremarkbtn.removeAttribute("disabled")
+    if (response.status != 200) alert("Request returned status code", res.status);
+    if (response.status === 200) {
+        swal.fire("Success", "Remark Added Successfully", "success");
+        remarkedittext.value=""
+        getremarks(uuid);
+    }
+}
+
+/* Remarks Section End*/
 
 /* PP Upload form  */
 /* 
@@ -707,7 +839,7 @@ async function upload(count) {
             },
         })
             .then(res => res.json())
-            .then(e => checkresult(e, count))  
+            .then(e => checkresult(e, count))
             .catch(err => handlerror("upload", err));
     }
 }
@@ -739,6 +871,8 @@ function checkresult(result, count) {
 
 function displayuploads() {
     const files = document.getElementById(`Media`);
+    console.log("medialist", medialist);
+    files.innerHTML = ''
     medialist.forEach(i => {
         files.innerHTML += `
         <div class="input-group mb-3">
@@ -761,7 +895,24 @@ async function deletefile(fileId) {
     const query = encodeQuery(data)
     const response = await fetch(query);
     const res = await response.json();
-    setactivedomains(res)
+    console.log("delete file", res);
+    if (res.status == "SUCCESS") {
+        removeformMedialist(fileId)
+    }
+
+    // setactivedomains(res)
+}
+
+function removeformMedialist(fileId) {
+    console.log("medialist", medialist);
+    for (let i = 0; i < medialist.length; i++) {
+        const item = medialist[i];
+        if (item.fileId == fileId) {
+            medialist.splice(i)
+            displayuploads()
+            return
+        }
+    }
 }
 
 /* PP Upload form  */
