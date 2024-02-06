@@ -294,6 +294,7 @@ function renderfacultypp() {
     const filterbar = document.getElementById("filterbar")
     const PSHeader = document.getElementById("PSHeader")
     filterbar.removeAttribute("hidden")
+    filterbar.classList.add("d-flex")
     PSHeader.removeAttribute("hidden")
     PSlist.innerHTML = ""
     if (filteredPP.length <= 0) {
@@ -531,6 +532,7 @@ function renderviewMore(uuid) {
     const filterbar = document.getElementById("filterbar")
     const PSHeader = document.getElementById("PSHeader")
     filterbar.setAttribute("hidden",true)
+    filterbar.classList.remove("d-flex")
     PSHeader.setAttribute("hidden",true)
     PSList.innerHTML = ""
     PSList.innerHTML += `
