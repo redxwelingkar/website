@@ -2,15 +2,22 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Actor" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
-    <title>Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <title>TEST</title>
 </head>
 
 <body>
-    <div class="d-flex">
+    <!-- <div class="d-flex">
         <div class="dropdown m-1">
             <button id="Statusfilterbtn" class="btn shadow dropdown-toggle" type="button" data-bs-toggle="dropdown"
                 aria-expanded="true">
@@ -34,7 +41,92 @@
                 <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
         </div>
+    </div> -->
+
+    <br><br><br><br><br>
+    <div id="${i.uuid}" class="flex-container">
+        <div class="row-tick">
+
+            <!-- <input onclick="tag(this)" id="${checkboxId}" type="checkbox" value="${i.uuid}" style="display: block;">
+            <div class="loader" id="${spinId}" style="display: none;"></div> -->
+
+            <!-- <button type="button" class="btn btn-primary position-relative">
+                Mails <span
+                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99 <span
+                        class="visually-hidden">unread messages</span></span>
+            </button> -->
+
+            <!-- <div class="position-relative">
+                <img src="./assets/img/add_comment.svg" alt="left">
+                <span class="custom_pill ">
+                    <table>
+                        <tr>
+                            <img class="selectionboxleft " src="./assets/img/check.svg" alt="check">
+                            <img class="selectionboxright " src="./assets/img/cross.svg" alt="cross">
+                        </tr>
+                    </table>
+                </span>
+            </div> -->
+
+            <!-- <div class="position-relative">
+                <img src="./assets/img/check.svg" alt="left">
+                <img src="./assets/img/cross.svg" alt="left">
+            </div> -->
+
+            <!-- <ul class="list-inline">
+                <li><a href="#" title="Header" data-toggle="popover" data-placement="right" data-content="Content">
+                        GeeksforGeeks
+                    </a>
+                </li>
+            </ul> -->
+
+            <div class="custom_pill">
+                <img class="selectionboxleft " src="./assets/img/check.svg" alt="check">
+                <img class="selectionboxright " src="./assets/img/cross.svg" alt="cross">
+            </div>
+
+            <img src="./assets/img/untagged.svg" alt="">
+            <div class="loader" id="${spinId}" style="display: none;"></div>
+
+
+        </div>
+
+        <div class="row-title-bg">
+            <div class="row-title-ps-title">
+                ${i.title}
+            </div>
+            <div class="row-title-ps-domain">
+                ${i.domain}
+            </div>
+            <div class="row-title-ps-number">
+                ${i.uuid}
+                <div class="row-title-ps-time">${formattedDate}</div>
+            </div>
+        </div>
+        <div class="row-desc-bg">
+            <div class="row-desc-ps-desc">
+                ${i.description}
+            </div>
+        </div>
+        <div class="row-sol-bg">
+            <div class="row-sol-ps-sol">
+                ${i.solution}
+            </div>
+        </div>
+        <div class="row-img-bg" onclick="renderviewMore('${i.uuid}')">
+            <div class="row-img-flex">
+                <div class="row-img-view-picture-icon"></div>
+                <div class="row-img-info-icon"></div>
+                <div class="row-img-add-comment-icon"></div>
+            </div>
+            <div class="row-img-font">
+                View More
+            </div>
+        </div>
     </div>
+
+    <script src="./assets/js/pcp.js"></script>
+</body>
 </body>
 
 </html>

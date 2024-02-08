@@ -506,8 +506,8 @@
 /*--------------------------------------------------------------
 # Faculty Home / View more
 --------------------------------------------------------------*/
-.back_btn{
-    height:48px;
+.back_btn {
+    height: 48px;
     width: 48px;
 }
 
@@ -586,6 +586,27 @@
     line-height: normal;
 }
 
+.selectionboxleft {
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+}
+.selectionboxright{
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.custom_pill{
+    position: absolute;
+    background-image: url(../img/Union.svg);
+    background-repeat: no-repeat;
+    height: 60px;
+    width: 90px;
+    padding: 10px;
+    transform: translate(50%,-90%);
+}
 /*--------------------------------------------------------------
 # Faculty Home / View more End
 --------------------------------------------------------------*/

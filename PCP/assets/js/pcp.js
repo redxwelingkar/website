@@ -29,12 +29,10 @@ function onloadfacultyhome() {
 }
 
 function onloadstudenthome() {
-    /* TODO */
     verifyuser()
     displayusername()
     getPPbyemail()
     getactivedomains()
-    // view same as faculty
 }
 
 function onloadrequests() {
@@ -559,11 +557,11 @@ function renderstudentpp() {
         PSList.innerHTML += `
         <div class="card m-1" onclick=viewfullpagepp("${i.uuid}")>
             <div class="card-body">
-                <h5 class="card-title">${i.title}</h5>
-                <p class="card-text">${i.domain}</p>
+                <h5 class="card-title subsection-header ">${i.title}</h5>
+                <p class="card-text subsection-header ">${i.domain}</p>
                 <div class="d-flex justify-content-between">
-                    <p class="">${i.uuid}</p>
-                    <p class="">${formattedDate}</p>
+                    <p class="subsection-content">${i.uuid}</p>
+                    <p class="subsection-content">${formattedDate}</p>
                 </div>
             </div>
         </div>
@@ -591,36 +589,38 @@ function viewfullpagepp(uuid) {
     const PSList = document.getElementById("PSList")
     PSList.innerHTML = ""
     PSList.innerHTML += `
-    <div onclick="renderstudentpp()" class="btn">
-    <img 
-    src="./assets/img/circle-arrow-left-solid.svg" 
-    alt="Back to Pain PointList" 
-    style="height: 2rem; width: 2rem;">
-    </div>
-    <div class="d-flex justify-content-between ">
-        <div>
-            <div id="P-title" class="h4 title-right">${pp.title}</div>
-            <div id="P-domain" class="domain-right">${pp.domain}</div>
+    <div class="d-flex flex-row">
+        <div class="d-flex flex-column btn back_btn" onclick="renderstudentpp()">
+            <img src="./assets/img/circle-arrow-left-solid.svg" alt="Back to Pain PointList">
         </div>
-    </div>
-        
-    <div class="d-flex flex-column p-2">
-        <div class="title">Description</div>
-        <div class="description" id="description">
-        ${pp.description}
+        <div class="d-flex flex-column" style="background-color: rgb(255, 255, 255); width: 100%;">
+            <div class="d-flex justify-content-between ">
+                <div>
+                    <div id="P-title" class="h4 title">
+                        <span id="P-ID">${pp.uuid}</span>
+                        ${pp.title}
+                    </div>
+                    <div id="P-domain" class="domain">${pp.domain}</div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-column p-2">
+                <div class="subsection-header">Description</div>
+                <div class="subsection-content" id="description">
+                    ${pp.description}
+                </div>
+            </div>
+            <div class="d-flex flex-column p-2">
+                <div class="subsection-header">Solution</div>
+                <div class="subsection-content" id="solution">
+                    ${pp.solution}
+                </div>
+            </div>
+
+            <div class="p-2" id="media"></div>
+            <div class="line"></div>
+            <div id="RemarksSection"></div>
         </div>
-    </div>
-    <div class="d-flex flex-column p-2">
-        <div class="title">Solution</div>
-        <div class="description" id="solution">
-        ${pp.solution}
-        </div>
-    </div>
-    <div class="p-2" id="media">
-        
-    </div>
-    <div class="p-2" id="remarkssection">
-        
     </div>
     `
     // render media if present
@@ -632,13 +632,13 @@ function viewfullpagepp(uuid) {
         media.forEach(i => {
             mediadiv.innerHTML += `
             <a class="p-1 media-card btn" href="${i.fileUrl}" target="_blank">
-                <div class="title">${i.filename}</div>
+                <div class="domain">${i.filename}</div>
             </a>
             `
         })
 
-        // TODO: render remarks if present
     }
+    getremarks(uuid)
 }
 
 function renderviewMore(uuid) {
@@ -653,9 +653,9 @@ function renderviewMore(uuid) {
     const PSList = document.getElementById("PSList")
     const filterbar = document.getElementById("filterbar")
     const PSHeader = document.getElementById("PSHeader")
-    filterbar.setAttribute("hidden",true)
+    filterbar.setAttribute("hidden", true)
     filterbar.classList.remove("d-flex")
-    PSHeader.setAttribute("hidden",true)
+    PSHeader.setAttribute("hidden", true)
     PSList.innerHTML = ""
     PSList.innerHTML += `
         
@@ -740,9 +740,9 @@ function renderviewMore(uuid) {
         var media = JSON.parse(pp.media)
         media.forEach(i => {
             mediadiv.innerHTML += `
-            <img src="${i.fileUrl}" alt="${i.filename}" srcset="">
-
-                
+            <a class="p-1 media-card btn" href="${i.fileUrl}" target="_blank">
+                <div class="title">${i.filename}</div>
+            </a>
                 `
         })
     }
@@ -771,8 +771,9 @@ async function getremarks(uuid) {
     if (response.status != 200) alert("Request returnde status code", res.status);
     if (response.status === 200) {
         console.log("remarks", res);
-        if (res.length === 0) {
+        if (res.length == 0) {
             RemarksSection.innerText = "No Remarks yet";
+            return
         }
 
         let sortedres = res.sort(function (a, b) {
@@ -808,7 +809,7 @@ async function saveremark() { // continue here 06/02
         return
     }
     swal.fire("Info", "Please wait", "info");
-    saveremarkbtn.setAttribute("disabled",true)
+    saveremarkbtn.setAttribute("disabled", true)
     var uuid = document.getElementById("P-ID").innerText
     data = {
         url: v300,
@@ -826,7 +827,7 @@ async function saveremark() { // continue here 06/02
     if (response.status != 200) alert("Request returned status code", res.status);
     if (response.status === 200) {
         swal.fire("Success", "Remark Added Successfully", "success");
-        remarkedittext.value=""
+        remarkedittext.value = ""
         getremarks(uuid);
     }
 }
@@ -964,10 +965,14 @@ async function upload(count) {
         })
             .then(res => res.json())
             .then(e => checkresult(e, count))
-            .catch(err => handlerror("upload", err));
+            .catch(err => handlerror("upload", err,file.files[0].name));
     }
 }
 
+function handlerror(fn, error,name) {
+    console.error(fn, error);
+    Swal.fire(`Error while uploading file : ${name}`, error, "error")
+}
 
 function loading(count) {
     const file = document.getElementById(`uploadgroup${count}`);
