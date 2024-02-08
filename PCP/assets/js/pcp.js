@@ -175,50 +175,123 @@ async function getactivedomains() {
 /* Send to DB */
 async function tag(item) {
 
-    const checkboxId = `check-${item.value}`;
-    const spinId = `spin-${item.value}`;
+    const checkbox = item;
+    const spinId = `spin-${item.id}`;
+    // console.log(checkboxId.style)
 
-    const checkbox = document.getElementById(checkboxId);
     const spin = document.getElementById(spinId)
 
-    if (spin.style.display === 'none') {
-        spin.style.display = 'block';
-        checkbox.style.display = 'none';
-    }
+    // const popover = new bootstrap.Popover(checkbox, {
+    //     container: 'body',
+    //     content:'Hello',
+    //     trigger:'focus'
+    // })
+    // popover.show();
 
-    console.log(item.checked);
+
+    const popover = new bootstrap.Popover(checkbox, {
+        placement: 'top',
+        // trigger: 'focus',
+        content: () => {
+            // Create Button 1 with SVG icon
+            const button1 = document.createElement('button');
+            button1.setAttribute('type', 'button');
+            button1.setAttribute('id', `${item.id}`);
+            button1.setAttribute('data-bs-toggle', 'popover');
+            button1.setAttribute('data-bs-trigger', 'focus');
+            button1.setAttribute('class', 'row-button');
+            // button1.setAttribute('onclick', 'toggleicon()');
+
+            // Create an img element with your SVG icon
+            const svgIcon = document.createElement('img');
+            svgIcon.setAttribute('src', './assets/img/accepted.svg');
+            svgIcon.setAttribute('alt', 'Button 1 Icon');
+            svgIcon.setAttribute('id', 'check');
+            // svgIcon.setAttribute('onclick', 'toggleicon()');
+
+            // Append the img element to the button
+            button1.appendChild(svgIcon);
+
+            console.log("aa")
+            // Event listener for Button 1 (check.svg)
+            button1.addEventListener('click', () => {
+                console.log("as")
+                checkbox.replaceWith(button1); // Replace the original button with Button 1
+            });
+
+            // Create Button 2
+            const button2 = document.createElement('button');
+            button2.setAttribute('type', 'button');
+            button2.setAttribute('id', 'myButton');
+            button2.classList.add('btn');
+
+            // Create an img element for Button 2 (replace 'path/to/your/second/icon.svg' with your actual path)
+            const svgIcon2 = document.createElement('img');
+            svgIcon2.setAttribute('src', './assets/img/rejected.svg');
+            svgIcon2.setAttribute('alt', 'Button 2 Icon');
+            svgIcon2.setAttribute('id', 'cancel');
+
+            // Append the img element to the button
+            button2.appendChild(svgIcon2);
+
+            // Event listener for Button 1 (check.svg)
+            button2.addEventListener('click', () => {
+                checkbox.replaceWith(button2); // Replace the original button with Button 2
+            });
+
+            // Apply margin to the second button for space
+            button2.style.marginLeft = '5px';
+
+            // Create a container div for both buttons
+            const container = document.createElement('div');
+            container.appendChild(button1);
+            container.appendChild(button2);
+
+            return container;
+        },
+        html: true
+    });
+    popover.show();
+
+    // if (spin.style.display === 'none') {
+    //     spin.style.display = 'block';
+    //     checkbox.style.display = 'none';
+    // }
+
+    console.log(item);
+    console.log(item.id);
     console.log(item.value)
 
-    data = {
-        url: v300,
-        params: {
-            code: "markstatus",
-            uuid: item.value,
-            status: item.checked,
-        },
-    };
-    const query = encodeQuery(data);
-    const response = await fetch(query);
-    const res = await response.json();
-    if (spin.style.display === 'block') {
-        spin.style.display = 'none';
-        checkbox.style.display = 'block';
-    }
-    console.log("res", res);
-    if (response.status != 200) alert("Request returned status code", res.status);
-    if (response.status === 200) {
-        // list.innerHTML = "";
-        console.log(res.status);
-        if (res.status === "SUCCESS") {
-            if (item.checked === true) {
-                document.getElementById(checkboxId).checked = true;
-            } else if (item.checked === false) {
-                document.getElementById(checkboxId).checked = false;
-            } else {
-                console.error();
-            }
-        }
-    }
+    // data = {
+    //     url: v300,
+    //     params: {
+    //         code: "markstatus",
+    //         uuid: item.value,
+    //         status: item.checked,
+    //     },
+    // };
+    // const query = encodeQuery(data);
+    // const response = await fetch(query);
+    // const res = await response.json();
+    // if (spin.style.display === 'block') {
+    //     spin.style.display = 'none';
+    //     checkbox.style.display = 'block';
+    // }
+    // console.log("res", res);
+    // if (response.status != 200) alert("Request returned status code", res.status);
+    // if (response.status === 200) {
+    //     // list.innerHTML = "";
+    //     console.log(res.status);
+    //     if (res.status === "SUCCESS") {
+    //         if (item.checked === true) {
+    //             document.getElementById(checkboxId).checked = true;
+    //         } else if (item.checked === false) {
+    //             document.getElementById(checkboxId).checked = false;
+    //         } else {
+    //             console.error();
+    //         }
+    //     }
+    // }
 }
 
 async function handlenewuserrequest(btn) {
@@ -310,7 +383,9 @@ function renderfacultypp() {
             PSlist.innerHTML += `
                 <div id="${i.uuid}" class="flex-container">
                     <div class="row-tick">
-                        <input onclick="tag(this)" id="${checkboxId}" type="checkbox" value="${i.uuid}" style="display: block;">
+                        <button data-bs-toggle="popover" class="row-button" onclick="tag(this)" id="${i.uuid}" type="button" value=" " style="display: block;">
+                            <img src="./assets/img/uncheck.svg" alt="unmarked" width="100%" height="100%">
+                        </button>
                         <div class="loader" id="${spinId}" style="display: none;"></div>
                     </div>
                     <div class="row-title-bg">
@@ -346,15 +421,18 @@ function renderfacultypp() {
                         </div>
                     </div>
                 </div>
+                <div style="height: 5px"></div>
                 `;
-        } else if (i.tag === true) {
+        } else if (i.tag === "accepted") {
             PSlist.innerHTML += `
                 <div id="${i.uuid}" class="flex-container">
-                    <div class="row-tick">
-                        <input onclick="tag(this)" id="${checkboxId}" type="checkbox" value="${i.uuid}" style="display: block;" checked>
+                    <div class="row-tick-green">
+                        <button data-bs-toggle="popover" data-bs-trigger="focus" class="row-button" onclick="tag(this)" id="${i.uuid}" type="button" value="accepted" style="display: block;">
+                            <img src="./assets/img/accepted.svg" alt="unmarked" width="100%" height="100%">
+                        </button>
                         <div class="loader" id="${spinId}" style="display: none;"></div>
                     </div>
-                    <div class="row-title-bg">
+                    <div class="row-title-bg-green">
                         <div class="row-title-ps-title">
                             ${i.title}
                         </div>
@@ -366,17 +444,17 @@ function renderfacultypp() {
                             <div class="row-title-ps-time">${formattedDate}</div>
                         </div>
                     </div>
-                    <div class="row-desc-bg">
+                    <div class="row-desc-bg-green">
                         <div class="row-desc-ps-desc">
                             ${i.description}
                         </div>
                     </div>
-                    <div class="row-sol-bg">
+                    <div class="row-sol-bg-green">
                         <div class="row-sol-ps-sol">
                             ${i.solution}
                         </div>
                     </div>
-                    <div class="row-img-bg" onclick="renderviewMore('${i.uuid}')">
+                    <div class="row-img-bg-green" onclick="renderviewMore('${i.uuid}')">
                         <div class="row-img-flex">
                             <div class="row-img-view-picture-icon"></div>
                             <div class="row-img-info-icon"></div>
@@ -387,8 +465,52 @@ function renderfacultypp() {
                         </div>
                     </div>
                 </div>
+                <div style="height: 5px"></div>
                 `;
-        } else {
+        } else if (i.tag === "rejected") {
+            PSlist.innerHTML += `
+                <div id="${i.uuid}" class="flex-container">
+                    <div class="row-tick-red">
+                        <button class="row-button" onclick="tag(this)" id="${i.uuid}" type="button" value="rejected" style="display: block;" data-bs-trigger="focus" data-bs-toggle="popover">
+                            <img src="./assets/img/rejected.svg" alt="unmarked" width="100%" height="100%">
+                        </button>
+                        <div class="loader" id="${spinId}" style="display: none;"></div>
+                    </div>
+                    <div class="row-title-bg-red">
+                        <div class="row-title-ps-title">
+                            ${i.title}
+                        </div>
+                        <div class="row-title-ps-domain">
+                            ${i.domain}
+                        </div>
+                        <div class="row-title-ps-number">
+                            ${i.uuid}
+                            <div class="row-title-ps-time">${formattedDate}</div>
+                        </div>
+                    </div>
+                    <div class="row-desc-bg-red">
+                        <div class="row-desc-ps-desc">
+                            ${i.description}
+                        </div>
+                    </div>
+                    <div class="row-sol-bg-red">
+                        <div class="row-sol-ps-sol">
+                            ${i.solution}
+                        </div>
+                    </div>
+                    <div class="row-img-bg-red" onclick="renderviewMore('${i.uuid}')">
+                        <div class="row-img-flex">
+                            <div class="row-img-view-picture-icon"></div>
+                            <div class="row-img-info-icon"></div>
+                            <div class="row-img-add-comment-icon"></div>
+                        </div>
+                        <div class="row-img-font">
+                            View More
+                        </div>
+                    </div>
+                </div>
+                <div style="height: 5px"></div>
+                `;
         }
     });
 }

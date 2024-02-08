@@ -47,6 +47,8 @@
     display: flex;
     flex-direction: row;
     gap: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .tick-head-bg {
@@ -54,8 +56,8 @@
     width: 3.75rem;
     height: 1.5625rem;
     flex: auto;
-    /* background: #FFF9F9;
-    border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
 }
 
 .title-head-bg {
@@ -63,8 +65,8 @@
     width: 18.75rem;
     height: 1.5625rem;
     flex: auto;
-    background: #FFF9F9;
-    border-bottom: 1px solid rgba(217, 35, 52, 0.22);
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
 }
 
 .desc-head-bg {
@@ -72,8 +74,8 @@
     width: 30.625rem;
     height: 1.5625rem;
     flex: auto;
-    background: #FFF9F9;
-    border-bottom: 1px solid rgba(217, 35, 52, 0.22);
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
 }
 
 .sol-head-bg {
@@ -81,8 +83,8 @@
     width: 25rem;
     height: 1.5625rem;
     flex: auto;
-    background: #FFF9F9;
-    border-bottom: 1px solid rgba(217, 35, 52, 0.22);
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
 }
 
 .img-head-bg {
@@ -90,14 +92,15 @@
     width: 8.75rem;
     height: 1.5625rem;
     flex: auto;
-    /* background: #FFF9F9;
-    border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
 }
 
 .bg-head-font {
     margin-top: 5px;
-    width: 159px;
-    color: #D92334;
+    padding-left: 2px;
+    width: auto;
+    color: #FFF;
     font-family: Montserrat;
     font-size: 14.5px;
     font-style: normal;
@@ -118,11 +121,61 @@
     flex: auto;
 }
 
+.row-tick-green {
+    display: flex;
+    width: 3.75rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(49, 174, 14, 0.15);
+    flex: auto;
+}
+
+.row-tick-red {
+    display: flex;
+    width: 3.75rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(217, 35, 52, 0.10);
+    flex: auto;
+}
+
+.row-button{
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+}
+
 .row-title-bg {
     width: 18.75rem;
     height: auto;
     flex: auto;
     background: #F8F9FA;
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-title-bg-green {
+    width: 18.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-title-bg-red {
+    width: 18.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
     border-bottom: 1px solid #7A7A7A;
 }
 
@@ -174,6 +227,22 @@
     border-bottom: 1px solid #7A7A7A;
 }
 
+.row-desc-bg-green {
+    width: 30.625rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-desc-bg-red {
+    width: 30.625rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
+    border-bottom: 1px solid #7A7A7A;
+}
+
 .row-desc-ps-desc {
     margin-top: 0.28rem;
     margin-left: 0.31rem;
@@ -194,6 +263,24 @@
     border-bottom: 1px solid #7A7A7A;
 }
 
+.row-sol-bg-green {
+    display: flex;
+    width: 25rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-sol-bg-red {
+    display: flex;
+    width: 25rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
+    border-bottom: 1px solid #7A7A7A;
+}
+
 .row-sol-ps-sol {
     display: flex;
     margin-top: 0.28rem;
@@ -211,6 +298,22 @@
     height: auto;
     flex: auto;
     background: #F8F9FA;
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-img-bg-green {
+    width: 8.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-img-bg-red {
+    width: 8.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
     border-bottom: 1px solid #7A7A7A;
 }
 
