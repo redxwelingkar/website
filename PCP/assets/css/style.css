@@ -606,6 +606,7 @@
     width: 90px;
     padding: 10px;
     transform: translate(50%,-90%);
+    display: none;
 }
 /*--------------------------------------------------------------
 # Faculty Home / View more End

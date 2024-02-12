@@ -17,115 +17,144 @@
 </head>
 
 <body>
-    <!-- <div class="d-flex">
+    <!-- NavBar -->
+    <nav class="top-line navbar">
+        <div class="d-flex container-fluid justify-content-between mx-5">
+            <img src="./assets/img/WeSchool_logo.svg" alt="weschool" />
+            <span class="top-line-type"></span>
+            <div class="d-flex">
+                <!-- <div class="btn" onclick="window.location='/PCP/homev3.html'">
+                    Compact view
+                </div> -->
+                <div class="d-flex flex-column">
+                    <div class="d-flex justify-content-end btn">
+                        <div id="profile-name" onclick="accessrequests()">
+                            Profile-name
+                        </div>
+                        <img src="./assets/img/profile.svg" alt="profile" />
+                    </div>
+                    <div class="d-flex justify-content-end btn">
+                        <div id="profile-name" onclick="logout()">Logout</div>
+                        <img src="./assets/img/logout.svg" alt="profile" />
+                    </div>
+                </div>
+                <img class="p-2" src="./assets/img/RedX_Logo.svg" alt="redx" />
+            </div>
+        </div>
+    </nav>
+    <!-- NavBar -->
+
+    <!-- Filter Bar -->
+    <div id="filterbar" class="d-flex m-1 ">
         <div class="dropdown m-1">
             <button id="Statusfilterbtn" class="btn shadow dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                aria-expanded="true">
+                aria-expanded="false">
                 Filter by Status:
             </button>
             <ul id="Statusfilter" class="dropdown-menu shadow" aria-labelledby="Statusfilterbtn">
                 <li><a class="dropdown-item" href="#">Loading Please... </a></li>
-                <li><a class="dropdown-item" href="#">Loading Please... </a></li>
+            </ul>
+        </div>
+        <div class="dropdown m-1">
+            <button id="domainfilterbtn" class="btn shadow dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filter by Domain:
+            </button>
+            <ul id="domainfilter" class="dropdown-menu shadow">
                 <li><a class="dropdown-item" href="#">Loading Please... </a></li>
             </ul>
         </div>
-        <div class="dropdown">
-            <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Dropdown link
-            </a>
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
+        <div class="dropdown m-1">
+            <button id="programfilterbtn" class="btn shadow dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filter by Program:
+            </button>
+            <ul id="programfilter" class="dropdown-menu shadow">
+                <li><a class="dropdown-item" href="#">Loading Please... </a></li>
             </ul>
         </div>
-    </div> -->
+    </div>
+    <!-- Filter Bar -->
 
-    <br><br><br><br><br>
-    <div id="${i.uuid}" class="flex-container">
-        <div class="row-tick">
+    <div class="line"></div>
+    <div style="height: 5px"></div>
 
-            <!-- <input onclick="tag(this)" id="${checkboxId}" type="checkbox" value="${i.uuid}" style="display: block;">
-            <div class="loader" id="${spinId}" style="display: none;"></div> -->
-
-            <!-- <button type="button" class="btn btn-primary position-relative">
-                Mails <span
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99 <span
-                        class="visually-hidden">unread messages</span></span>
-            </button> -->
-
-            <!-- <div class="position-relative">
-                <img src="./assets/img/add_comment.svg" alt="left">
-                <span class="custom_pill ">
-                    <table>
-                        <tr>
-                            <img class="selectionboxleft " src="./assets/img/check.svg" alt="check">
-                            <img class="selectionboxright " src="./assets/img/cross.svg" alt="cross">
-                        </tr>
-                    </table>
-                </span>
-            </div> -->
-
-            <!-- <div class="position-relative">
-                <img src="./assets/img/check.svg" alt="left">
-                <img src="./assets/img/cross.svg" alt="left">
-            </div> -->
-
-            <!-- <ul class="list-inline">
-                <li><a href="#" title="Header" data-toggle="popover" data-placement="right" data-content="Content">
-                        GeeksforGeeks
-                    </a>
-                </li>
-            </ul> -->
-
-            <div class="custom_pill">
-                <img class="selectionboxleft " src="./assets/img/check.svg" alt="check">
-                <img class="selectionboxright " src="./assets/img/cross.svg" alt="cross">
-            </div>
-
-            <img src="./assets/img/untagged.svg" alt="">
-            <div class="loader" id="${spinId}" style="display: none;"></div>
-
-
+    <div id="PSHeader" class="flex-container" hidden>
+        <div class="tick-head-bg"></div>
+        <div class="title-head-bg">
+            <div class="bg-head-font">pain point title</div>
         </div>
+        <div class="desc-head-bg">
+            <div class="bg-head-font">description</div>
+        </div>
+        <div class="sol-head-bg">
+            <div class="bg-head-font">solution</div>
+        </div>
+        <div class="img-head-bg">
+            <div class="bg-head-font">options</div>
+        </div>
+    </div>
+    <div style="height: 5px"></div>
 
-        <div class="row-title-bg">
-            <div class="row-title-ps-title">
-                ${i.title}
+    <div id="PSList">
+        <h1>Loading please wait ..</h1>
+        <div id="${i.uuid}" class="flex-container">
+            <div class="row-tick">
+
+                <button data-bs-toggle="popover" class="row-button" onclick="toggletags('${i.uuid}')" id="${i.uuid}+btn"
+                    type="button" value=" " style="display: block;">
+                    <img src="./assets/img/uncheck.svg" alt="unmarked" width="100%" height="100%">
+                </button>
+
+                <div id="${i.uuid}+tags" class="custom_pill" style="display: none;">
+                    <img class="selectionboxleft " src="./assets/img/accepted.svg" alt="check"
+                        onclick="tag('${i.uuid}','accepted')">
+                    <img class="selectionboxright " src="./assets/img/rejected.svg" alt="cross"
+                        onclick="tag('${i.uuid}','accepted')">
+                </div>
+
+                <img src="./assets/img/untagged.svg" alt="">
+                <div class="loader" id="${spinId}" style="display: none;"></div>
+
+
             </div>
-            <div class="row-title-ps-domain">
-                ${i.domain}
+
+            <div class="row-title-bg">
+                <div class="row-title-ps-title">
+                    ${i.title}
+                </div>
+                <div class="row-title-ps-domain">
+                    ${i.domain}
+                </div>
+                <div class="row-title-ps-number">
+                    ${i.uuid}
+                    <div class="row-title-ps-time">${formattedDate}</div>
+                </div>
             </div>
-            <div class="row-title-ps-number">
-                ${i.uuid}
-                <div class="row-title-ps-time">${formattedDate}</div>
+            <div class="row-desc-bg">
+                <div class="row-desc-ps-desc">
+                    ${i.description}
+                </div>
             </div>
-        </div>
-        <div class="row-desc-bg">
-            <div class="row-desc-ps-desc">
-                ${i.description}
+            <div class="row-sol-bg">
+                <div class="row-sol-ps-sol">
+                    ${i.solution}
+                </div>
             </div>
-        </div>
-        <div class="row-sol-bg">
-            <div class="row-sol-ps-sol">
-                ${i.solution}
-            </div>
-        </div>
-        <div class="row-img-bg" onclick="renderviewMore('${i.uuid}')">
-            <div class="row-img-flex">
-                <div class="row-img-view-picture-icon"></div>
-                <div class="row-img-info-icon"></div>
-                <div class="row-img-add-comment-icon"></div>
-            </div>
-            <div class="row-img-font">
-                View More
+            <div class="row-img-bg" onclick="renderviewMore('${i.uuid}')">
+                <div class="row-img-flex">
+                    <div class="row-img-view-picture-icon"></div>
+                    <div class="row-img-info-icon"></div>
+                    <div class="row-img-add-comment-icon"></div>
+                </div>
+                <div class="row-img-font">
+                    View More
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="./assets/js/pcp.js"></script>
+    <script src="./assets/js/test.js"></script>
 </body>
 </body>
 
