@@ -155,8 +155,21 @@
     </div> -->
 
     <button type="button" onclick="adduploadbtn()">Add</button>
-    <div id="Media">    </div>
+    <div id="Media">
+        <div class="input-group" id="uploadgroup${count}">
+            <input name="file" id="uploadfile" type="file" class="form-control" multiple>
+        </div>
+    </div>
     <button type="button" onclick="submit()">Submit</button>
+
+    <!-- popup modal -->
+    <div id="popupmodal" class="d-flex justify-content-center align-items-center">
+        <div>
+            <h3>Please wait</h3>
+            <h1>Uploading Files</h1>
+        </div>
+    </div>
+    <!-- popup modal -->
 
     <script src="./assets/js/test.js"></script>
 </body>

@@ -104,9 +104,12 @@
                 <div id="Media">
 
                 </div>
-                <div class="btn btn-secondary" onclick="adduploadbtn()">ADD +</div>
+                <!-- <div class="btn btn-secondary" onclick="adduploadbtn()">ADD +</div> -->
+                <div class="input-group" id="uploadgroup${count}">
+                    <input name="file" id="uploadfile" type="file" class="form-control" multiple>
+                </div>
             </div>
-            <button id="submitbtn" type="button" class="btn btn-primary mb-3" onclick="ppformsubmit()">Submit</button>
+            <button id="submitbtn" type="button" class="btn btn-primary mb-3" onclick="checkSubmission()">Submit</button>
 
         </form>
 

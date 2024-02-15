@@ -819,9 +819,45 @@ async function saveremark() { // continue here 06/02
 2. clear indicators on file upload step
 3. loader after submit pp
  */
+
+async function checkSubmission() {
+    /* creating parallel read streams for every file 
+    */
+    const uploadfile = document.getElementById(`uploadfile`);
+    const fr = new FileReader();
+    Swal.fire("Please wait", "Uploading Pain Point", "info")
+    disablesubmit()
+    if (uploadfile.files.length > 0) {
+        Swal.fire("Please wait", "Uploading Files", "info")
+        for (let i = 0; i < uploadfile.files.length; i++) {
+            const file = uploadfile.files[i];
+            var media = await readBuffer(file)
+        }
+        checkforupload(uploadfile.files.length)
+    } else {
+        ppformsubmit()
+    }
+}
+
+function checkforupload(uploadfile) {
+    /* checking if files selected for upload have been uploaded
+    every 3 sec until files found are equal to files uploaded    
+    */
+    var timer
+    timer = setInterval(function () {
+        if (medialist.length == uploadfile) {
+            clearInterval(timer);
+            console.log("medialist", medialist);
+            ppformsubmit()
+        }
+    }, 3000)
+}
+
+
 const form = document.getElementById('ppform');
 function ppformsubmit() {
-    console.log("Submit clicked");
+    /* Gathering all values from the form
+     */
     const user = JSON.parse(sessionStorage.getItem("user"))
     var domain = document.getElementById("ActiveDomainbtn").innerText
     var title = document.getElementById("PSTitle").value
@@ -831,6 +867,8 @@ function ppformsubmit() {
     if (PSformval(user, domain, title, description)) {
         console.log("Submitted");
         submitpp(user, domain, title, description, media, solution)
+    } else {
+        enablesubmit()
     }
 }
 
@@ -857,7 +895,38 @@ async function submitpp(user, domain, title, description, media, solution) {
         Swal.fire("Success", "Pain Point has been submitted", "success")
         window.location.reload()
     }
-    else Swal.fire("Upload failed", res.message, "error")
+    else {
+        enablesubmit()
+        Swal.fire("Upload failed", res.message, "error")
+    }
+}
+
+
+function readBuffer(file) {
+    const fr = new FileReader();
+    fr.readAsArrayBuffer(file);
+    fr.onload = f => {
+        const url = "https://script.google.com/macros/s/AKfycbw9xdNLGkgYPJJ5eEdnDpYJ3tMYJj5pawthFfceoZ-A6bEH7CEXUje6CpO5uQRyrXodjg/exec";  // <--- Please set the URL of Web Apps.
+        // https://script.google.com/macros/s/AKfycbw9xdNLGkgYPJJ5eEdnDpYJ3tMYJj5pawthFfceoZ-A6bEH7CEXUje6CpO5uQRyrXodjg/exec?
+        const qs = new URLSearchParams({ filename: file.name, mimeType: file.type });
+        fetch(`${url}?${qs}`, {
+            method: "POST", body: JSON.stringify([...new Int8Array(f.target.result)]), redirect: 'follow', headers: {
+                "Content-Type": "text/plain;charset=utf-8",
+            },
+        })
+            .then(res => res.json())
+            .then(e => addmediatolist(e))
+            .catch(err => handlerror("upload", err, file.name));
+    }
+}
+
+function addmediatolist(result) {
+    medialist.push(result)
+}
+
+function handlerror(fn, error, name) {
+    console.error(fn, error);
+    Swal.fire(`Error while uploading file : ${name}`, error, "error")
 }
 
 
@@ -869,7 +938,12 @@ function closeAdd() {
     document.getElementById("uploadform").style.display = "none";
     document.getElementById("uploadformbg").style.display = "none";
 }
-
+function  enablesubmit() {
+    document.getElementById(`submitbtn`).removeAttribute("disabled")
+}
+function disablesubmit() {
+    document.getElementById(`submitbtn`).setAttribute("disabled", "disabled");
+}
 function setactivedomains(res) {
     const ActiveDomain = document.getElementById("ActiveDomain")
     ActiveDomain.innerHTML = ""
@@ -885,6 +959,7 @@ function selectdomain(item) {
 }
 
 function PSformval(user, domain, title, description) {
+    /* form Validation for PP form */
     if (user == "") {
         console.log("no user");
         Swal.fire("user not found please login and try again", "", "error")
@@ -909,6 +984,7 @@ function PSformval(user, domain, title, description) {
     return true
 }
 
+/* Depricated in favor of multiple file upload
 function adduploadbtn() {
     const media = document.getElementById("Media")
 
@@ -923,6 +999,7 @@ function adduploadbtn() {
     
     `
 }
+ 
 
 async function upload(count) {
     const file = document.getElementById(`uploadfile${count}`);
@@ -944,6 +1021,8 @@ async function upload(count) {
             .catch(err => handlerror("upload", err, file.files[0].name));
     }
 }
+
+
 
 function handlerror(fn, error, name) {
     console.error(fn, error);
@@ -1019,6 +1098,7 @@ function removeformMedialist(fileId) {
         }
     }
 }
+*/
 
 /* PP Upload form  */
 
