@@ -1,137 +1,527 @@
-html body {
-    margin: 0;
-    padding: 0;
-    height: 8dvh;
+.top-line {
+    top: 0;
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
+    background: #F8F9FA;
 }
 
-/*--------------------------------------------------------------
-# Nav Bar
---------------------------------------------------------------*/
-.navbar-brand {
-    color: #556270 !important;
-    font-family: Actor !important;
-    font-size: 32px !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    line-height: normal !important;
-}
-
-.profile-name {
-    color: #000 !important;
-    font-family: Montserrat !important;
-    font-size: 16px !important;
-    font-style: normal !important;
-    font-weight: 400 !important;
-    line-height: normal !important;
-}
-
-/*--------------------------------------------------------------
-# Filter Bar
---------------------------------------------------------------*/
-
-.filter-bar {
-    padding: 10px;
-}
-.btn.active {
-    color: #ff0202;
-}
-.dropdown-toggle {
-    color: #666;
-    font-family: Montserrat !important;
-    font-size: 12px !important;
-    font-style: normal !important;
-    font-weight: 500 !important;
-    line-height: normal !important;
-}
-
-.dropdown-item {
-    color: #333;
+.top-line-type {
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
+    color: var(--Heading-Text, #8A4EC7);
     font-family: Montserrat;
-    font-size: 12px;
+    font-size: 1.9375rem;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     line-height: normal;
+    border-bottom: 0.125rem solid #31AE0E;
 }
 
-.activefilter{
-    color: #ff0202;
+.top-line-type::before {
+    content: "pain points collection portal";
 }
 
-/*--------------------------------------------------------------
-# Left pane
---------------------------------------------------------------*/
-
-.scrollable-container {
-    flex: 1;
-    overflow-y: scroll;
-    /* border: 1px solid #ff0202; */
-    height: 85dvh;
-    padding: 1vh;
-}
-
-.scrollable-content {
-    text-align: start !important;
-    padding-left: 5px !important;
-    border-top: 0px !important;
-    border-left: 0px !important;
-    border-right: 0px !important;
-    border-radius: 0% !important;
-    width: 100% !important;
-    --bs-btn-border-color: #BEBEBE !important;
-    --bs-btn-active-bg: hsl(354, 72%, 95%) !important;
-    --bs-btn-active-border-color: hwb(354 14% 15%) !important;
-    margin-top: 8px;
-}
-
-.scrollable-content.active {
-    background-color: #ffd7db;
-}
-
-.svg-yellow {
-    background-image: url('../img/yellow.svg');
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-
-.svg-green {
-    background-image: url('../img/green.svg');
-    background-repeat: no-repeat;
-    background-position: right center;
-}
-
-.title-left {
+.filter-type {
+    margin-top: 0.62rem;
+    margin-left: 72.31rem;
     color: #000;
     font-family: Montserrat;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.domain-left {
-    color: #000;
-    font-family: Montserrat;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-/*--------------------------------------------------------------
-# Right pane
---------------------------------------------------------------*/
-
-.title-right {
-    color: #000;
-    font-family: Montserrat;
-    font-size: 23px;
+    font-size: 0.75rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
 }
 
-.domain-right {
+.line {
+    margin-top: 0.56rem;
+    margin-left: 0.62rem;
+    margin-right: 0.63rem;
+    width: auto;
+    height: 0.09375rem;
+    background: rgba(49, 174, 14, 1);
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.tick-head-bg {
+    top: 7.87rem;
+    width: 3.75rem;
+    height: 1.5625rem;
+    flex: auto;
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
+}
+
+.title-head-bg {
+    top: 7.87rem;
+    width: 18.75rem;
+    height: 1.5625rem;
+    flex: auto;
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
+}
+
+.desc-head-bg {
+    top: 7.87rem;
+    width: 30.625rem;
+    height: 1.5625rem;
+    flex: auto;
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
+}
+
+.sol-head-bg {
+    top: 7.87rem;
+    width: 25rem;
+    height: 1.5625rem;
+    flex: auto;
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
+}
+
+.img-head-bg {
+    top: 9.69rem;
+    width: 8.75rem;
+    height: 1.5625rem;
+    flex: auto;
+    background: #412B76;
+    /* border-bottom: 1px solid rgba(217, 35, 52, 0.22); */
+}
+
+.bg-head-font {
+    margin-top: 5px;
+    padding-left: 2px;
+    width: auto;
+    color: #FFF;
+    font-family: Montserrat;
+    font-size: 14.5px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.row-tick {
+    display: flex;
+    width: 3.75rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background: #F8F9FA;
+    flex: auto;
+}
+
+.row-tick-green {
+    display: flex;
+    width: 3.75rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(49, 174, 14, 0.15);
+    flex: auto;
+}
+
+.row-tick-red {
+    display: flex;
+    width: 3.75rem;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(217, 35, 52, 0.10);
+    flex: auto;
+}
+
+.row-button{
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+}
+
+.row-title-bg {
+    width: 18.75rem;
+    height: auto;
+    flex: auto;
+    background: #F8F9FA;
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-title-bg-green {
+    width: 18.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-title-bg-red {
+    width: 18.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-title-ps-title {
+    margin-top: 0.28rem;
+    margin-left: 0.31rem;
     color: #000;
+    font-family: Montserrat;
+    font-size: 0.90625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.row-title-ps-domain {
+    margin-top: 0.13rem;
+    margin-left: 0.31rem;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.row-title-ps-number {
+    display: flex;
+    align-items: center;
+    margin-top: 0.12rem;
+    margin-left: 0.31rem;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.row-title-ps-time {
+    margin-right: 0.25rem;
+    margin-left: auto;
+}
+
+.row-desc-bg {
+    width: 30.625rem;
+    height: auto;
+    flex: auto;
+    background: #F8F9FA;
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-desc-bg-green {
+    width: 30.625rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-desc-bg-red {
+    width: 30.625rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-desc-ps-desc {
+    margin-top: 0.28rem;
+    margin-left: 0.31rem;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 0.90625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.row-sol-bg {
+    display: flex;
+    width: 25rem;
+    height: auto;
+    flex: auto;
+    background: #F8F9FA;
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-sol-bg-green {
+    display: flex;
+    width: 25rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-sol-bg-red {
+    display: flex;
+    width: 25rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-sol-ps-sol {
+    display: flex;
+    margin-top: 0.28rem;
+    margin-left: 0.31rem;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 0.90625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.row-img-bg {
+    width: 8.75rem;
+    height: auto;
+    flex: auto;
+    background: #F8F9FA;
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-img-bg-green {
+    width: 8.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(49, 174, 14, 0.15);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-img-bg-red {
+    width: 8.75rem;
+    height: auto;
+    flex: auto;
+    background: rgba(217, 35, 52, 0.10);
+    border-bottom: 1px solid #7A7A7A;
+}
+
+.row-img-flex {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 0.38rem;
+}
+
+.row-img-view-picture-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url("../img/view_picture.svg");
+}
+
+.row-img-info-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url("../img/info_icon.svg");
+}
+
+.row-img-add-comment-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-image: url("../img/add_comment.svg");
+}
+
+.row-img-font {
+    margin-top: 0.44rem;
+    color: #000;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 0.90625rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@media (max-width: 1300px) {
+    .filter-type {
+        margin-left: 40rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .top-line-type::before {
+        content: "PPCP";
+    }
+
+    .filter-type {
+        margin-left: 20rem;
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .filter-type {
+        margin-left: 10rem;
+        font-size: 0.75rem;
+    }
+}
+
+/*--------------------------------------------------------------
+# auth pages
+--------------------------------------------------------------*/
+.disabled {
+    color: transparent;
+}
+
+
+/*--------------------------------------------------------------
+# End auth pages
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Student Home / Uploadform
+--------------------------------------------------------------*/
+#uploadform {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -ms-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: none;
+    width: 70%;
+    background-color: #FFF;
+    z-index: 4;
+}
+
+#uploadformbg {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#Media {
+    overflow-y: scroll;
+    max-height: 100px;
+}
+
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 20px;
+    height: 20px;
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+.del {
+    height: 20px;
+}
+
+.fixedButton {
+
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    padding: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.roundedFixedBtn {
+    height: 60px;
+    line-height: 80px;
+    width: 60px;
+    font-size: 2em;
+    font-weight: bold;
+    border-radius: 50%;
+    /* background-color: #4CAF50; */
+    /* color: white; */
+    text-align: center;
+    cursor: pointer;
+}
+
+.timestamp {
+    color: #000;
+    font-size: 12px;
+}
+
+.media-card {
+    width: fit-content;
+    border-width: 1px !important;
+    border-radius: 10px !important;
+    border-color: #000 !important;
+}
+
+/*--------------------------------------------------------------
+# Student Home / Uploadform End
+--------------------------------------------------------------*/
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*--------------------------------------------------------------
+# Faculty Home / View more
+--------------------------------------------------------------*/
+.back_btn {
+    height: 48px;
+    width: 48px;
+}
+
+.title {
+    color: #412B76 !important;
+    font-family: Montserrat;
+    font-size: 23px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.domain {
+    color: #412B76 !important;
     font-family: Montserrat;
     font-size: 18px;
     font-style: normal;
@@ -139,61 +529,85 @@ html body {
     line-height: normal;
 }
 
-.Image-Galary {
-    height: fit-content;
-}
-
-.big-image {
-    background-color: rgb(90, 107, 106);
-    display: inline-flex;
-    height: 350px;
-    padding: 0px 5px;
-    justify-content: center;
-    align-items: flex-start;
-    width: 396px;
-    flex-shrink: 0;
-    border-radius: 16px;
-    background: #FFF;
-    box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.25);
-}
-
-.title {
-    color: #000;
-    font-family: Montserrat;
+.subsection-header {
+    color: #31AE0E;
+    font-family: "Open Sans";
     font-size: 14px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    padding: 2.5px;
 }
 
-.subtitle {
-    color: #000;
-    font-family: Montserrat;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    padding: 2.5px;
-}
-
-.description {
-    overflow: hidden;
-    color: #000;
-    text-overflow: ellipsis;
-    font-family: Montserrat;
+.subsection-content {
+    font-family: "Open Sans";
     font-size: 12px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-.remarkbtn{
-    width: 75px;
-    height: 35px;
-    flex-shrink: 0;
+.studentinfoSectiondiv {
+    float: right;
+    /* width: 150px; */
+    /* height: 150px; */
+    margin: 10px;
+    /* background-color: #10dbff; */
 }
 
-.search{
-    width: 250px !important;
+.studentinforow {
+    color: #000;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-color: #f8f9fa;
 }
+
+.purple_border {
+    border: 1px solid #7B61FF !important;
+
+}
+
+.remark_header {
+    color: #412B76;
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.remark_content {
+    font-family: "Open Sans";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.selectionboxleft {
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+}
+.selectionboxright{
+    height: 28px;
+    width: 28px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.custom_pill{
+    position: absolute;
+    background-image: url(../img/Union.svg);
+    background-repeat: no-repeat;
+    height: 60px;
+    width: 90px;
+    padding: 10px;
+    transform: translate(50%,-90%);
+    display: none;
+}
+/*--------------------------------------------------------------
+# Faculty Home / View more End
+--------------------------------------------------------------*/

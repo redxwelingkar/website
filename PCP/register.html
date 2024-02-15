@@ -64,7 +64,8 @@
 
         input[type="text"],
         input[type="password"],
-        input[type="email"] {
+        input[type="email"],
+        input[type="id"] {
             width: 100%;
             padding: 10px;
             margin-bottom: 20px;
@@ -131,15 +132,18 @@
     </header><!-- End Header -->
     <div class="container1">
         <div class="login-form">
-            <h2>Login</h2>
+            <h2>Register</h2>
             <form id="login-form">
-                <input id="login-email" name="email" type="text" placeholder="Email" required>
-                <input id="login-password" name="password" type="password" placeholder="Password" required>
-                <button id="loginbtn" class="button" type="button" onclick="login()">Login</button>
+                <input id="signup-name" name="name" type="text" placeholder="Name" required>
+                <input id="signup-email" name="email" type="text" placeholder="Email" required>
+                <input id="signup-password" name="password" type="password" placeholder="Password" required>
+                <input id="signup-id" name="id" type="id" placeholder="Student ID / Roll No." required>
+                <input id="signup-program" name="program" type="text" placeholder="Program Eg BD1 2023-2025" required>
+                <p>Reenter password</p>
+                <button id="signupbtn" class="button" type="button" onclick="register()">Register</button>
+                <br>
+                <a class="btn" href="./pcpauth.html">Login</a>
             </form>
-            <br>
-            <br>
-            <a class="btn" href="./register.html">Register</a>
         </div>
     </div>
 
@@ -150,6 +154,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./assets/js/pcp.js"></script>
 
+
     <script>
         function encodeQuery(data) {
             let query = data.url
@@ -159,84 +164,80 @@
             return query.slice(0, -1)
         }
 
-        function enableloginbtn() {
+        function enablesignupbtn() {
             // enable login button
-            const loginbtn = document.getElementById("loginbtn")
-            loginbtn.removeAttribute("disabled")
-            loginbtn.classList.remove("disabled")
+            const signupbtn = document.getElementById("signupbtn")
+            signupbtn.removeAttribute("disabled")
+            signupbtn.classList.remove("disabled")
         }
-        function disableloginbtn() {
+        function disablesignupbtn() {
             // enable login button
-            const loginbtn = document.getElementById("loginbtn")
-            loginbtn.setAttribute("disabled", true)
-            loginbtn.classList.add("disabled")
+            const signupbtn = document.getElementById("signupbtn")
+            signupbtn.setAttribute("disabled", true)
+            signupbtn.classList.add("disabled")
         }
 
-        function validateFormLogin(email, password) {
+        function validateFormSignup(email, password, name, id, program) {
             if (!email || !/^\"?[\w-_\.]*\"?@welingkar\.org$/.test(email)) return "Please enter a valid Welingkar email address";
             if (!password) return "Please enter a Password"
+            if (!name) return "Please enter a name"
+            if (!id) return "Please enter Student Roll number or Employee Id"
+            if (!program) return "Please enter a program or department"
         }
 
-        async function login() {
-            disableloginbtn()
-            // loader
+
+        async function register() {
+            disablesignupbtn()
             swal.fire("Please wait")
+            var email = document.getElementById("signup-email").value
+            var password = document.getElementById("signup-password").value
+            var name = document.getElementById("signup-name").value
+            var id = document.getElementById("signup-id").value
+            var program = document.getElementById("signup-program").value
 
-            var email = document.getElementById("login-email").value
-            var password = document.getElementById("login-password").value
-
-            const form = validateFormLogin(email, password)
+            const form = validateFormSignup(email, password, name, id, program)
             if (form) {
                 swal.fire("Error", form, "error")
+                enablesignupbtn()
                 return
             }
-            // console.log("password", password);
+
+            console.log("password", password);
             var encrypted = CryptoJS.SHA3(password);
-            // console.log("encrypted", encrypted.words);
+            console.log("encrypted", encrypted.words);
             data = {
                 url: v300,
                 params: {
-                    'code': 'login',
+                    'code': 'signup',
+                    'name': name,
                     'email': email,
-                    'password': encrypted
+                    'password': encrypted,
+                    'program': program,
+                    'id': id
                 }
             }
             const query = encodeQuery(data)
+            console.log("query", query);
             const response = await fetch(query);
             const res = await response.json();
             if (response.status != 200) {
-                enableloginbtn()
+                enablesignupbtn()
                 alert("Request returned status code", res.status);
             }
             if (response.status === 200) {
                 if (res.error) {
-                    enableloginbtn()
+                    enablesignupbtn()
                     swal.fire("Error", res.status, "error");
                 }
-                if (res.status != "SUCCESS") {
-                    enableloginbtn()
-                    swal.fire("Info", res.status, "info");
-                }
                 else {
-                    const user = res
-                    console.log("user", user);
-                    sessionStorage.setItem("user", JSON.stringify(res.user))
-                    if (user.user.access_status == "ADMIN" || user.user.access_status == "FACULTY") {
-                        console.log("user.access_status", user.access_status);
-                        window.location = "/PCP/facultyhome.html"
-                    }
-                    else {
-                        console.log("user.access_status", user.access_status);
-                        window.location = "/PCP/studenthome.html"
-                    }
+                    enablesignupbtn()
+                    swal.fire("Success!", "Please login with your credentials", "success");
                 }
             }
         }
 
 
-
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

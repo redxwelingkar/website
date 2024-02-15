@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Actor" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>PPCP</title>
+</head>
+
+<body onload="onloadfacultyhome()">
+
+    <!-- <body> -->
+    <!-- NavBar -->
+    <nav class="top-line navbar">
+        <div class="d-flex container-fluid justify-content-between mx-5">
+            <img src="./assets/img/WeSchool_logo.svg" alt="weschool" />
+            <span class="top-line-type"></span>
+            <div class="d-flex">
+                <!-- <div class="btn" onclick="window.location='/PCP/homev3.html'">
+                    Compact view
+                </div> -->
+                <div class="d-flex flex-column">
+                    <div class="d-flex justify-content-end btn">
+                        <div id="profile-name" onclick="accessrequests()">
+                            Profile-name
+                        </div>
+                        <img src="./assets/img/profile.svg" alt="profile" />
+                    </div>
+                    <div class="d-flex justify-content-end btn">
+                        <div id="profile-name" onclick="logout()">Logout</div>
+                        <img src="./assets/img/logout.svg" alt="profile" />
+                    </div>
+                </div>
+                <img class="p-2" src="./assets/img/RedX_Logo.svg" alt="redx" />
+            </div>
+        </div>
+    </nav>
+    <!-- NavBar -->
+
+    <!-- Filter Bar -->
+    <div id="filterbar" class="d-flex m-1 " >
+        <div class="dropdown m-1">
+            <button id="Statusfilterbtn" class="btn shadow dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filter by Status:
+            </button>
+            <ul id="Statusfilter" class="dropdown-menu shadow" aria-labelledby="Statusfilterbtn">
+                <li><a class="dropdown-item" href="#">Loading Please... </a></li>
+            </ul>
+        </div>
+        <div class="dropdown m-1">
+            <button id="domainfilterbtn" class="btn shadow dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filter by Domain:
+            </button>
+            <ul id="domainfilter" class="dropdown-menu shadow">
+                <li><a class="dropdown-item" href="#">Loading Please... </a></li>
+            </ul>
+        </div>
+        <div class="dropdown m-1">
+            <button id="programfilterbtn" class="btn shadow dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Filter by Program:
+            </button>
+            <ul id="programfilter" class="dropdown-menu shadow">
+                <li><a class="dropdown-item" href="#">Loading Please... </a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- Filter Bar -->
+
+    <div class="line"></div>
+    <div style="height: 5px"></div>
+
+    <div id="PSHeader" class="flex-container" hidden>
+        <div class="tick-head-bg"></div>
+        <div class="title-head-bg">
+            <div class="bg-head-font">pain point title</div>
+        </div>
+        <div class="desc-head-bg">
+            <div class="bg-head-font">description</div>
+        </div>
+        <div class="sol-head-bg">
+            <div class="bg-head-font">solution</div>
+        </div>
+        <div class="img-head-bg">
+            <div class="bg-head-font">options</div>
+        </div>
+    </div>
+    <div style="height: 5px"></div>
+
+    <div id="PSList">
+        <h1>Loading please wait ..</h1>
+        <!-- Test view PS list-->
+        <!-- <div id="${i.uuid}" class="flex-container">
+            <div class="row-tick">
+                <button class="row-button" onclick="tag(this)" id="${checkboxId}" type="button" value="${i.uuid}"
+                    style="display: block;" data-bs-trigger="focus" data-bs-toggle="popover">
+                    <img src="./assets/img/uncheck.svg" alt="unmarked" width="100%" height="100%">
+                    <img src="./assets/img/accepted.svg" alt="unmarked" width="100%" height="100%">
+                    <img src="./assets/img/rejected.svg" alt="unmarked" width="100%" height="100%">
+                </button>
+                <div class="loader" id="${spinId}" style="display: none;"></div>
+            </div>
+            <div class="row-title-bg">
+                <div class="row-title-ps-title">
+                    ${i.title}
+                </div>
+                <div class="row-title-ps-domain">
+                    ${i.domain}
+                </div>
+                <div class="row-title-ps-number">
+                    ${i.uuid}
+                    <div class="row-title-ps-time">${formattedDate}</div>
+                </div>
+            </div>
+            <div class="row-desc-bg">
+                <div class="row-desc-ps-desc">
+                    ${i.description}
+                </div>
+            </div>
+            <div class="row-sol-bg">
+                <div class="row-sol-ps-sol">
+                    ${i.solution}
+                </div>
+            </div>
+            <div class="row-img-bg" onclick="renderviewMore('${i.uuid}')">
+                <div class="row-img-flex">
+                    <div class="row-img-view-picture-icon"></div>
+                    <div class="row-img-info-icon"></div>
+                    <div class="row-img-add-comment-icon"></div>
+                </div>
+                <div class="row-img-font">
+                    View More
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Test view Viewmore-->
+        <!-- <div class="d-flex flex-row">
+            <div class="d-flex flex-column btn back_btn" onclick="renderfacultypp()">
+                <img src="./assets/img/circle-arrow-left-solid.svg" alt="Back to Pain PointList">
+            </div>
+            <div class="d-flex flex-column" style="background-color: rgb(255, 255, 255); width: 100%;">
+                <div class="d-flex justify-content-between ">
+                    <div>
+                        <div id="P-title" class="h4 title">
+                            <span id="P-ID">${pp.uuid}</span>
+                            ${pp.title}
+                        </div>
+                        <div id="P-domain" class="domain">${pp.domain}</div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column p-2">
+                    <div class="subsection-header">Description</div>
+                    <div class="subsection-content" id="description">
+                        ${pp.description}
+                    </div>
+                </div>
+                <div class="d-flex flex-column p-2">
+                    <div class="subsection-header">Solution</div>
+                    <div class="subsection-content" id="solution">
+                        ${pp.solution}
+                    </div>
+                </div>
+
+                <div class="p-2" id="media">
+
+                </div>
+                <div class="studentinfoSectiondiv">
+                    <div class="subsection-header">Student Info</div>
+                    <div class="subsection-content">
+                        <table>
+                            <tr class="">
+                                <td class="studentinforow col p-1">Name</td>
+                                <td class="studentinforow col p-1">: ${pp.name}</td>
+                            </tr>
+                            <tr class="">
+                                <td class="studentinforow col p-1">Program</td>
+                                <td class="studentinforow col p-1">: ${pp.program}</td>
+                            </tr>
+                            <tr class="">
+                                <td class="studentinforow col p-1">ID/Roll no</td>
+                                <td class="studentinforow col p-1">: ${pp.std_ID}</td>
+                            </tr>
+                            <tr class="">
+                                <td class="studentinforow col p-1">Email</td>
+                                <td class="studentinforow col p-1">: ${pp.email}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="p-2" id="remarkssection">
+                    <div class="mb-3">
+                        <label for="remarkedittext" class="form-label subsection-header">Remarks</label>
+                        <textarea class="form-control description purple_border" id="remarkedittext"
+                            rows="3"></textarea>
+                        <div class="mt-3 mb-3 d-flex justify-content-end">
+
+                            <button id="saveremarkbtn" type="button"
+                                class="btn btn-outline-primary shadow purple_border" onclick=`saveremark(${String(
+                                pp.uuid )})`>Save</button>
+                        </div>
+                        <div class="line"></div>
+                        <div id="RemarksSection">
+                            <div class="remark_header m-1">
+                                ${i.givenby}
+                            </div>
+                            <div class="card shadow p-2">
+                                <div class="d-flex flex-row">
+                                    <div class="remark_content"> ${i.remark}</div>
+                                </div>
+                            </div>
+
+                            <div class="remark_header m-1">
+                                ${i.givenby}
+                            </div>
+                            <div class="card shadow p-2">
+                                <div class="d-flex flex-row">
+                                    <div class="remark_content"> ${i.remark}</div>
+                                </div>
+                            </div>
+
+                            <div class="remark_header m-1">
+                                ${i.givenby}
+                            </div>
+                            <div class="card shadow p-2">
+                                <div class="d-flex flex-row">
+                                    <div class="remark_content"> ${i.remark}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/pcp.js"></script>
+</body>
+
+</html>

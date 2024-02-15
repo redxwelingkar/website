@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Actor" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <title>PPCP</title>
+</head>
+
+<!-- onload="onloadstudenthome()" -->
+<body onload="onloadstudenthome()">
+    <!-- NavBar -->
+    <nav class="top-line navbar">
+        <div class="d-flex container-fluid justify-content-between mx-5">
+            <span class="top-line-type navbar-brand mb-0 btn"></span>
+            <div class="d-flex">
+                <!-- <div class="btn" onclick="window.location='/PCP/homev3.html'">
+                    Compact view
+                </div> -->
+                <div class="d-flex flex-column">
+                    <div class="d-flex justify-content-end btn">
+                        <div id="profile-name">
+                            Profile-name
+                        </div>
+                        <img src="./assets/img/profile.svg" alt="profile" />
+                    </div>
+                    <div class="d-flex justify-content-end btn">
+                        <div id="profile-name" onclick="logout()">Logout</div>
+                        <img src="./assets/img/logout.svg" alt="profile" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- NavBar -->
+
+    <div class="line"></div>
+    <div id="PSList" class="p-2">
+        <h1>Loading please wait ...</h1>
+        <!-- Test view -->
+        <div class="card m-1">
+            <!-- <h5 class="card-header"></h5> -->
+            <div class="card-body">
+                <h5 class="card-title">Pain Point - Title</h5>
+                <p class="card-text">Domain</p>
+                <div class="d-flex justify-content-between">
+                    <p class="">PS ID</p>
+                    <p class="">Time Stamp</p>
+                </div>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
+
+        <div class="card m-1" >
+            <!-- <h5 class="card-header"></h5> -->
+            <div class="card-body">
+                <h5 class="card-title">Pain Point - Title</h5>
+                <p class="card-text">Domain</p>
+                <div class="d-flex justify-content-between">
+                    <p class="">P0001</p>
+                    <p class="">16/Oct/2023; 09:30 PM</p>
+                </div>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+            </div>
+        </div>
+        <!-- Test view -->
+    </div>
+
+    <!-- upload form -->
+    <div id="uploadformbg" onclick="closeAdd()">
+    </div>
+    <div id="uploadform" class="border rounded-3 shadow p-3">
+        <form id="ppform" class="justify-content-center">
+            <p class="navbar-brand text-center">Upload form</p>
+
+            <div class="dropdown mb-3">
+                <label for="ActiveDomainbtn" class="form-label">Domain</label>
+                <button id="ActiveDomainbtn" class="btn dropdown-toggle border" type="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">Select Domain</button>
+                <ul id="ActiveDomain" class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Loading Please wait... </a></li>
+                </ul>
+            </div>
+
+            <div class="mb-3">
+                <label for="PSTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="PSTitle" placeholder="Title of your pain point">
+            </div>
+            <div class="mb-3">
+                <label for="PSDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="PSDescription" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="PSSolution" class="form-label">Solution</label>
+                <textarea class="form-control" id="PSSolution" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="Media" class="form-label">Images or Videos</label>
+                <div id="Media">
+
+                </div>
+                <!-- <div class="btn btn-secondary" onclick="adduploadbtn()">ADD +</div> -->
+                <div class="input-group" id="uploadgroup${count}">
+                    <input name="file" id="uploadfile" type="file" class="form-control" multiple>
+                </div>
+            </div>
+            <button id="submitbtn" type="button" class="btn btn-primary mb-3" onclick="checkSubmission()">Submit</button>
+
+        </form>
+
+    </div>
+
+    <div class="fixedButton" onclick="openAdd()">
+        <div class="roundedFixedBtn">
+            <img src="./assets/img/circle-plus-solid.svg" alt="Add" srcset="">
+        </div>
+    </div>
+    <!-- upload form -->
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/pcp.js"></script>
+</body>
+
+</html>
