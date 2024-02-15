@@ -188,6 +188,7 @@
             const form = validateFormLogin(email, password)
             if (form) {
                 swal.fire("Error", form, "error")
+                enableloginbtn()
                 return
             }
             // console.log("password", password);

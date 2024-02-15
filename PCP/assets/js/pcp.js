@@ -11,6 +11,8 @@ var filteredPP = []     //filtered all enteries
 var filters = []
 var user
 var userrequestlist = []
+var maxfilesize = 10 * 1024 * 1024
+var execsubmit = true
 
 
 /* Global states */
@@ -563,7 +565,7 @@ function viewfullpagepp(uuid) {
         media.forEach(i => {
             mediadiv.innerHTML += `
             <a class="p-1 media-card btn" href="${i.fileUrl}" target="_blank">
-                <div class="domain">${i.filename}</div>
+                <div class="subsection-header">${i.filename}</div>
             </a>
             `
         })
@@ -672,7 +674,7 @@ function renderviewMore(uuid) {
         media.forEach(i => {
             mediadiv.innerHTML += `
             <a class="p-1 media-card btn" href="${i.fileUrl}" target="_blank">
-                <div class="title">${i.filename}</div>
+                <div class="subsection-header">${i.filename}</div>
             </a>
                 `
         })
@@ -810,16 +812,6 @@ async function saveremark() { // continue here 06/02
 
 /* Remarks Section End*/
 
-/* PP Upload form  */
-/* 
-// TODO:
-1. Delete file does not work
-2. description is not uploaded
-1. disable upload until there is file present in the block
-2. clear indicators on file upload step
-3. loader after submit pp
- */
-
 async function checkSubmission() {
     /* creating parallel read streams for every file 
     */
@@ -827,16 +819,37 @@ async function checkSubmission() {
     const fr = new FileReader();
     Swal.fire("Please wait", "Uploading Pain Point", "info")
     disablesubmit()
-    if (uploadfile.files.length > 0) {
-        Swal.fire("Please wait", "Uploading Files", "info")
-        for (let i = 0; i < uploadfile.files.length; i++) {
-            const file = uploadfile.files[i];
-            var media = await readBuffer(file)
+    if (PSformval()) {
+        if (uploadfile.files.length > 0) {
+            Swal.fire("Please wait", "Uploading Files", "info")
+
+            // upload file limit 10 mb
+            var bufferread = true
+            for (let i = 0; i < uploadfile.files.length; i++) {
+                console.log(`for itera ${i}`);
+                const filesize = uploadfile.files[i].size;
+                if (filesize > maxfilesize) {
+                    bufferread = false
+                    Swal.fire("File Size limit 10 mb", `File: ${uploadfile.files[i].name} cannot be uploaded`, "error")
+                    enablesubmit()
+                    console.log("break called");
+                    break
+                }
+            }
+
+            if (bufferread) {
+                for (let i = 0; i < uploadfile.files.length; i++) {
+                    console.log("check submission else called");
+                    const file = uploadfile.files[i];
+                    var media = await readBuffer(file)
+
+                    checkforupload(uploadfile.files.length)
+
+                }
+            }
         }
-        checkforupload(uploadfile.files.length)
-    } else {
-        ppformsubmit()
-    }
+        else ppformsubmit()
+    } else enablesubmit()
 }
 
 function checkforupload(uploadfile) {
@@ -848,7 +861,7 @@ function checkforupload(uploadfile) {
         if (medialist.length == uploadfile) {
             clearInterval(timer);
             console.log("medialist", medialist);
-            ppformsubmit()
+            if (execsubmit) ppformsubmit()
         }
     }, 3000)
 }
@@ -856,16 +869,17 @@ function checkforupload(uploadfile) {
 
 const form = document.getElementById('ppform');
 function ppformsubmit() {
+    execsubmit = false
     /* Gathering all values from the form
      */
+    console.log("ppformsubmit called");
     const user = JSON.parse(sessionStorage.getItem("user"))
     var domain = document.getElementById("ActiveDomainbtn").innerText
     var title = document.getElementById("PSTitle").value
     var description = document.getElementById("PSDescription").value
     var solution = document.getElementById("PSSolution").value
     var media = JSON.stringify(medialist)
-    if (PSformval(user, domain, title, description)) {
-        console.log("Submitted");
+    if (PSformval()) {
         submitpp(user, domain, title, description, media, solution)
     } else {
         enablesubmit()
@@ -873,6 +887,7 @@ function ppformsubmit() {
 }
 
 async function submitpp(user, domain, title, description, media, solution) {
+    console.log("submitpp called");
     data = {
         url: v300,
         params: {
@@ -892,6 +907,7 @@ async function submitpp(user, domain, title, description, media, solution) {
     const response = await fetch(query);
     const res = await response.json();
     if (res.status == "SUCCESS") {
+        execsubmit = true
         Swal.fire("Success", "Pain Point has been submitted", "success")
         window.location.reload()
     }
@@ -924,9 +940,38 @@ function addmediatolist(result) {
     medialist.push(result)
 }
 
-function handlerror(fn, error, name) {
+async function handlerror(fn, error, name) {
     console.error(fn, error);
+    enablesubmit()
+    deleteuploadedfiles()
     Swal.fire(`Error while uploading file : ${name}`, error, "error")
+}
+
+function deleteuploadedfiles() {
+    const filedeletelog = []
+    medialist.forEach(async i => {
+        const response = await deleteFilebyId(i.fileId)
+        filedeletelog.push(response)
+        console.log("filedeletelog", filedeletelog);
+    })
+}
+
+const deleteFilebyId = (fileId) => {
+    return new Promise((resolve, reject) => {
+        data = {
+            url: v300,
+            params: {
+                'code': 'deleteFile',
+                'fileId': fileId
+            }
+        }
+        const query = encodeQuery(data)
+        fetch(query).then(res => {
+            if (res.status == "SUCCESS") {
+                resolve(true)
+            } else reject(false)
+        })
+    })
 }
 
 
@@ -938,7 +983,7 @@ function closeAdd() {
     document.getElementById("uploadform").style.display = "none";
     document.getElementById("uploadformbg").style.display = "none";
 }
-function  enablesubmit() {
+function enablesubmit() {
     document.getElementById(`submitbtn`).removeAttribute("disabled")
 }
 function disablesubmit() {
@@ -958,8 +1003,13 @@ function selectdomain(item) {
     ActiveDomainbtn.innerText = item.innerText
 }
 
-function PSformval(user, domain, title, description) {
+function PSformval() {
     /* form Validation for PP form */
+    const user = JSON.parse(sessionStorage.getItem("user"))
+    var domain = document.getElementById("ActiveDomainbtn").innerText
+    var title = document.getElementById("PSTitle").value
+    var description = document.getElementById("PSDescription").value
+
     if (user == "") {
         console.log("no user");
         Swal.fire("user not found please login and try again", "", "error")
