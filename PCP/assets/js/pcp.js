@@ -913,6 +913,7 @@ async function submitpp(user, domain, title, description, media, solution) {
     }
     else {
         enablesubmit()
+        deleteuploadedfiles()
         Swal.fire("Upload failed", res.message, "error")
     }
 }
