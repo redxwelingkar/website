@@ -3,154 +3,98 @@
 
 <head>
     <title>Login and Registration Page</title>
-    <!-- Favicons -->
-    <link href="../assets/img/x.png" rel="icon">
-    <link href="../assets/img/x.png" rel="apple-touch-icon">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Actor" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
 
-    <!-- Google Fonts -->
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-    <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-    <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
-    <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-    <!-- Template Main CSS File -->
-    <link href="../assets/css/style.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container1 {
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-form,
-        .register-form {
-            width: 400px;
-            padding: 40px;
-            background-color: #f5f5f5;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .login-form {
-            margin-right: 50px;
-            text-align: center;
-        }
-
-        .register-form {
-            margin-left: 50px;
-            text-align: center;
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        input[type="text"],
-        input[type="password"],
-        input[type="email"],
-        input[type="id"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            background-color: #d8d8d8;
-            color: #333333;
-        }
-
-        .button {
-            width: 50%;
-            padding: 10px;
-            background-color: hwb(354 14% 15%);
-            color: #ffffff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 
 <body>
-    <!-- ======= Header ======= -->
-    <header id="header" class="fixed-top ">
-        <div class="container d-flex align-items-center">
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../index.html">REDX WESCHOOL</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
 
-            <h1 class="logo"><a href="../index.html">REDX WeSchool</a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-
-            <nav class="nav-menu d-none d-lg-block">
-
-                <ul>
-                    <li class="active"><a href="../index.html">Home</a></li>
-
-                    <li class="drop-down"><a href="../projects.html">Projects</a>
-                        <ul>
-                            <li><a href="publications.html">Publications & Patents</a></li>
-                            <li><a href="covid19projects.html">COVID-19 Projects</a></li>
-                            <li><a href="AR-page.html">AR Experience</a></li>
-
-
-                        </ul>
+                        <a class="nav-link " aria-current="page" href="../index.html">Home</a>
                     </li>
 
-                    <li><a href="../team.html">Team</a></li>
-                    <li class="drop-down"><a href="../events.html">Events</a>
-                        <ul>
-                            <li><a href="we4tech/index.html">We4Tech</a></li>
-                            <li><a href="sih2022/index.html">Smart India Hackathon</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../projects.html" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Projects
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../publications.html">Publications & Patents</a></li>
+                            <li><a class="dropdown-item" href="../covid19projects.html">COVID-19 Projects</a></li>
+                            <li><a class="dropdown-item" href="../AR-page.html">AR Experience</a></li>
                         </ul>
                     </li>
-                    <li><a href="../careers.html">Careers</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
-                    <li><a href="./pcpauth.html">PCP</a></li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="../team.html">Team</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="../events.html" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Events
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="../we4tech/index.html">We4Tech</a></li>
+                            <li><a class="dropdown-item" href="../sih2022/index.html">Smart India Hackathon</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../careers.html">Careers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="./pcpauth.html">PPCP</a>
+                    </li>
                 </ul>
-
-            </nav><!-- .nav-menu -->
-
-
-
+            </div>
         </div>
-    </header><!-- End Header -->
-    <div class="container1">
-        <div class="login-form">
-            <h2>Register</h2>
-            <form id="login-form">
-                <input id="signup-name" name="name" type="text" placeholder="Name" required>
-                <input id="signup-email" name="email" type="text" placeholder="Email" required>
-                <input id="signup-password" name="password" type="password" placeholder="Password" required>
-                <input id="signup-id" name="id" type="id" placeholder="Student ID / Roll No." required>
-                <input id="signup-program" name="program" type="text" placeholder="Program Eg BD1 2023-2025" required>
-                <p>Reenter password</p>
-                <button id="signupbtn" class="button" type="button" onclick="register()">Register</button>
-                <br>
-                <a class="btn" href="./pcpauth.html">Login</a>
-            </form>
-        </div>
+    </nav>
+    <!-- Header End -->
+
+    <div class="login">
+        <h1>Register</h1>
+        <form method="post">
+            <input id="signup-name" class="Authinput" type="text" name="name" placeholder="Name" required="required" />
+            <input id="signup-email" class="Authinput" type="email" name="email" placeholder="Email"
+                required="required" />
+            <input id="signup-password" class="Authinput" type="password" name="password" placeholder="Password"
+                required="required" />
+            <input id="signup-id" class="Authinput" type="id" name="id" placeholder="Student ID / Roll No."
+                required="required" />
+            <input id="signup-program" class="Authinput" type="text" name="profile"
+                placeholder="Program Eg BD1 2023-2025" required="required" />
+
+            <button id="signupbtn" type="button" class="Authbtn btn" onclick="register()">Register</button>
+
+        </form>
+        <a class="Authalernative btn" href="./pcpauth.html">Have a account? Login now</a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
         integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./assets/js/pcp.js"></script>
 
