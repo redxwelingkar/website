@@ -901,10 +901,50 @@ async function submitpp(user, domain, title, description, media, solution) {
             'description': description,
             'media': media,
             'solution': solution,
-        }
+        },
+
     }
     const query = encodeQuery(data)
-    const response = await fetch(query);
+    console.log("submitpp data qury", query.length);
+    const response = await fetch(query)
+        .then(res => res.json())
+        .then(res => {
+            console.log("res.status", res.status);
+            if (res.status == "SUCCESS") {
+                execsubmit = true
+                Swal.fire({
+                    title: "Success",
+                    text: "Pain Point has been submitted",
+                    icon: "success",
+                    confirmButtonText: "OK",
+                }).then(() => {
+                    window.location.reload()
+                })
+                setInterval(() => {
+                    window.location.reload()
+                }, 2000)
+            }
+        })
+        .catch(error => {
+            deleteuploadedfiles()
+            console.log("res.error", error);
+            setInterval(() => {
+                Swal.fire({
+                    title: "Error",
+                    text: error.message,
+                    icon: "error",
+                    confirmButtonText: "OK",
+                }).then(() => {
+
+                    // window.location.reload()
+                })
+            }, 2000)
+
+        })
+
+
+
+    /* 
     const res = await response.json();
     if (res.status == "SUCCESS") {
         execsubmit = true
@@ -913,8 +953,9 @@ async function submitpp(user, domain, title, description, media, solution) {
     }
     else {
         enablesubmit()
+        deleteuploadedfiles()
         Swal.fire("Upload failed", res.message, "error")
-    }
+    } */
 }
 
 
