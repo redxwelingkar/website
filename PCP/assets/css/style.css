@@ -1,5 +1,3 @@
-
-
 .top-line {
     top: 0;
     width: auto;
@@ -21,9 +19,9 @@
     border-bottom: 0.125rem solid #31AE0E;
 }
 
-.top-line-type::before {
+/* .top-line-type::before {
     content: "pain points collection portal";
-}
+} */
 
 .filter-type {
     margin-top: 0.62rem;
@@ -42,7 +40,7 @@
     margin-right: 0.63rem;
     width: auto;
     height: 0.09375rem;
-    background: rgba(49, 174, 14, 1);
+    background: #8A4EC7;
 }
 
 .flex-container {
@@ -149,7 +147,7 @@
     flex: auto;
 }
 
-.row-button{
+.row-button {
     background: transparent;
     border: none;
     padding: 0;
@@ -384,7 +382,7 @@
 # auth pages
 --------------------------------------------------------------*/
 /* Nav bar */
-nav a{
+nav a {
     color: #556270 !important;
     text-decoration: none !important;
     background-color: transparent !important;
@@ -411,7 +409,7 @@ nav a{
     /* color: #fff; */
     letter-spacing: 1px;
     text-align: center;
-    
+
 }
 
 .Authinput {
@@ -449,7 +447,7 @@ nav a{
     width: 50%;
 }
 
-.Authalernative{
+.Authalernative {
     font-size: 12px;
 }
 
@@ -549,6 +547,57 @@ nav a{
 
 /*--------------------------------------------------------------
 # Student Home / Uploadform End
+--------------------------------------------------------------*/
+
+/*--------------------------------------------------------------
+# Student Home 
+--------------------------------------------------------------*/
+.stdh-card {
+    background: #F8F9FA;
+    border-bottom: #7A7A7A;
+    border-width: 20px;
+}
+
+.stdh-title {
+    color: #412B76;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.stdh-domain {
+    color: #412B76;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.stdh-header {
+    color: #412B76;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-decoration: none;
+    border-bottom: 1px solid #31AE0E;
+}
+
+.stdh-content {
+    color: #000;
+    font-family: "Open Sans";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+/*--------------------------------------------------------------
+# Student Home End
 --------------------------------------------------------------*/
 
 /* Safari */
@@ -660,23 +709,25 @@ nav a{
     width: 28px;
     cursor: pointer;
 }
-.selectionboxright{
+
+.selectionboxright {
     height: 28px;
     width: 28px;
     cursor: pointer;
     margin-left: 5px;
 }
 
-.custom_pill{
+.custom_pill {
     position: absolute;
     background-image: url(../img/Union.svg);
     background-repeat: no-repeat;
     height: 60px;
     width: 90px;
     padding: 10px;
-    transform: translate(50%,-90%);
+    transform: translate(50%, -90%);
     display: none;
 }
+
 /*--------------------------------------------------------------
 # Faculty Home / View more End
 --------------------------------------------------------------*/

@@ -13,27 +13,22 @@
 </head>
 
 <!-- onload="onloadstudenthome()" -->
+
 <body onload="onloadstudenthome()">
+
+<!-- <body> -->
     <!-- NavBar -->
     <nav class="top-line navbar">
-        <div class="d-flex container-fluid justify-content-between mx-5">
-            <span class="top-line-type navbar-brand mb-0 btn"></span>
-            <div class="d-flex">
-                <!-- <div class="btn" onclick="window.location='/PCP/homev3.html'">
-                    Compact view
-                </div> -->
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-end btn">
-                        <div id="profile-name">
-                            Profile-name
-                        </div>
-                        <img src="./assets/img/profile.svg" alt="profile" />
-                    </div>
-                    <div class="d-flex justify-content-end btn">
-                        <div id="profile-name" onclick="logout()">Logout</div>
-                        <img src="./assets/img/logout.svg" alt="profile" />
-                    </div>
-                </div>
+        <div class="d-flex container-fluid">
+            <div class="d-flex justify-content-start gap-4">
+
+                <img src="./assets/img/we_logo.svg" alt="WeSchool" srcset="">
+                <img src="./assets/img/x_logo.svg" alt="REDX" srcset="">
+            </div>
+            <img src="./assets/img/ppcp_logo.svg" alt="PPCP" srcset="">
+            <div class="d-flex justify-content-end gap-4">
+                <img src="./assets/img/profile.svg" alt="profile" srcset="">
+                <img src="./assets/img/logout.svg" alt="Logout" onclick="logout()">
             </div>
         </div>
     </nav>
@@ -43,31 +38,52 @@
     <div id="PSList" class="p-2">
         <h1>Loading please wait ...</h1>
         <!-- Test view -->
-        <div class="card m-1">
-            <!-- <h5 class="card-header"></h5> -->
-            <div class="card-body">
-                <h5 class="card-title">Pain Point - Title</h5>
-                <p class="card-text">Domain</p>
-                <div class="d-flex justify-content-between">
-                    <p class="">PS ID</p>
-                    <p class="">Time Stamp</p>
-                </div>
-                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        <div class="p-2 border-bottom border-2">
+            <div class="d-flex flex-column">
+                <span class="stdh-title">Pain Point - title</span>
+                <span class="stdh-domain">Domain</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span class="stdh-domain">PS ID</span>
+                <span class="stdh-domain">Time stamp</span>
             </div>
         </div>
 
-        <div class="card m-1" >
-            <!-- <h5 class="card-header"></h5> -->
-            <div class="card-body">
-                <h5 class="card-title">Pain Point - Title</h5>
-                <p class="card-text">Domain</p>
-                <div class="d-flex justify-content-between">
-                    <p class="">P0001</p>
-                    <p class="">16/Oct/2023; 09:30 PM</p>
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column" style="background-color: rgb(255, 255, 255); width: 100%;">
+                <div class="p-2 border-bottom border-2">
+                    <div class="d-flex flex-column">
+                        <span class="stdh-title">${pp.title}</span>
+                        <span class="stdh-domain">${pp.domain}</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span class="stdh-domain">${pp.uuid}</span>
+                        <span class="stdh-domain">${formattedDate}</span>
+                    </div>
                 </div>
-                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+
+                <div class="flex-column p-2">
+                    <u class="stdh-header">description:</u>
+                    <div class="stdh-content" id="description">
+                        ${pp.description}
+                    </div>
+                </div>
+                <div class="flex-column p-2">
+                    <u class="stdh-header">solution:</u>
+                    <div class="stdh-content" id="solution">
+                        ${pp.solution}
+                    </div>
+                </div>
+
+                <div class="p-2" id="media"></div>
+                <div class="line"></div>
+                <div id="RemarksSection"></div>
+                <br><br><br><br><br><br><br>
             </div>
         </div>
+
+
+
         <!-- Test view -->
     </div>
 
@@ -109,17 +125,21 @@
                     <input name="file" id="uploadfile" type="file" class="form-control" multiple>
                 </div>
             </div>
-            <button id="submitbtn" type="button" class="btn btn-primary mb-3" onclick="checkSubmission()">Submit</button>
+            <button id="submitbtn" type="button" class="btn btn-primary mb-3"
+                onclick="checkSubmission()">Submit</button>
 
         </form>
 
     </div>
 
-    <div class="fixedButton" onclick="openAdd()">
-        <div class="roundedFixedBtn">
-            <img src="./assets/img/circle-plus-solid.svg" alt="Add" srcset="">
-        </div>
-    </div>
+
+
+    <img id="floatingaddbtn" class="fixedButton" onclick="openAdd()" src="./assets/img/circle-plus-solid.svg" alt="Add"
+        srcset="">
+    <img id="floatingbackbtn" class="fixedButton hidden" onclick="renderstudentpp()"
+        src="./assets/img/circle-arrow-left-solid.svg" alt="Go back" srcset="">
+
+
     <!-- upload form -->
 
 
