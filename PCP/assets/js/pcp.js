@@ -1,4 +1,4 @@
-const v300 = "https://script.google.com/macros/s/AKfycbzPSXRntXbqVZ-tfmJazl44EkTU8sCsv7xT0wQJKDI_DtQHYqNw2wvBKML_HJjRstcC/exec?";
+const v300 = "https://script.google.com/macros/s/AKfycbzih8ULE0nVqDar6nIwiei4H8OYBEF1WFkSlyBincutBjoajPfZ-KyQ76_F2k6XBK4mxQ/exec?";
 
 /* Global states */
 
@@ -478,8 +478,10 @@ function renderrequestlist() {
 
 function renderstudentpp() {
     // render add btn
-    const addbtn = document.getElementsByClassName("fixedButton")
-    addbtn[0].classList.remove("hidden")
+    const addbtn = document.getElementById("floatingaddbtn")
+    const backbtn = document.getElementById("floatingbackbtn")
+    addbtn.classList.remove("hidden")
+    backbtn.classList.add("hidden")
 
     const PSList = document.getElementById("PSList")
     PSList.innerHTML = ""
@@ -488,14 +490,14 @@ function renderstudentpp() {
 
         const formattedDate = formatTimestamp(`${i.timestamp}`);
         PSList.innerHTML += `
-        <div class="card m-1" onclick=viewfullpagepp("${i.uuid}")>
-            <div class="card-body">
-                <h5 class="card-title subsection-header ">${i.title}</h5>
-                <p class="card-text subsection-header ">${i.domain}</p>
-                <div class="d-flex justify-content-between">
-                    <p class="subsection-content">${i.uuid}</p>
-                    <p class="subsection-content">${formattedDate}</p>
-                </div>
+        <div class="p-2 border-bottom border-2" onclick=viewfullpagepp("${i.uuid}")>
+            <div class="d-flex flex-column">
+                <span class="stdh-title">${i.title}</span>
+                <span class="stdh-domain">${i.domain}</span>
+            </div>
+            <div class="d-flex justify-content-between">
+                <span class="stdh-domain">${i.uuid}</span>
+                <span class="stdh-domain">${formattedDate}</span>
             </div>
         </div>
         `
@@ -516,50 +518,52 @@ function viewfullpagepp(uuid) {
     })
 
     // hide add btn
-    const addbtn = document.getElementsByClassName("fixedButton")
-    addbtn[0].classList.add("hidden")
+    const addbtn = document.getElementById("floatingaddbtn")
+    const backbtn = document.getElementById("floatingbackbtn")
+    addbtn.classList.add("hidden")
+    backbtn.classList.remove("hidden")
 
+    const formattedDate = formatTimestamp(`${pp.timestamp}`);
     const PSList = document.getElementById("PSList")
     PSList.innerHTML = ""
     PSList.innerHTML += `
-    <div class="d-flex flex-row">
-        <div class="d-flex flex-column btn back_btn" onclick="renderstudentpp()">
-            <img src="./assets/img/circle-arrow-left-solid.svg" alt="Back to Pain PointList">
-        </div>
-        <div class="d-flex flex-column" style="background-color: rgb(255, 255, 255); width: 100%;">
-            <div class="d-flex justify-content-between ">
-                <div>
-                    <div id="P-title" class="h4 title">
-                        <span id="P-ID">${pp.uuid}</span>
-                        ${pp.title}
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column" style="background-color: rgb(255, 255, 255); width: 100%;">
+                <div class="p-2 border-bottom border-2">
+                    <div class="d-flex flex-column">
+                        <span class="stdh-title">${pp.title}</span>
+                        <span class="stdh-domain">${pp.domain}</span>
                     </div>
-                    <div id="P-domain" class="domain">${pp.domain}</div>
+                    <div class="d-flex justify-content-between">
+                        <span class="stdh-domain">${pp.uuid}</span>
+                        <span class="stdh-domain">${formattedDate}</span>
+                    </div>
                 </div>
-            </div>
 
-            <div class="d-flex flex-column p-2">
-                <div class="subsection-header">Description</div>
-                <div class="subsection-content" id="description">
-                    ${pp.description}
+                <div class="flex-column p-2">
+                    <u class="stdh-header">description:</u>
+                    <div class="stdh-content" id="description">
+                        ${pp.description}
+                    </div>
                 </div>
-            </div>
-            <div class="d-flex flex-column p-2">
-                <div class="subsection-header">Solution</div>
-                <div class="subsection-content" id="solution">
-                    ${pp.solution}
+                <div class="flex-column p-2">
+                    <u class="stdh-header">solution:</u>
+                    <div class="stdh-content" id="solution">
+                        ${pp.solution}
+                    </div>
                 </div>
-            </div>
 
-            <div class="p-2" id="media"></div>
-            <div class="line"></div>
-            <div id="RemarksSection"></div>
+                <div class="p-2" id="media"></div>
+                <div class="line"></div>
+                <div id="RemarksSection"></div>
+                <br><br><br><br><br><br><br>
+            </div>
         </div>
-    </div>
     `
     // render media if present
     const mediadiv = document.getElementById("media")
-
-    if (pp.media.length != 0) {
+    console.log("pp.media.length",JSON.parse(pp.media).length);
+    if (JSON.parse(pp.media).length != 0) {
         mediadiv.innerHTML = `<h5>Media</h5>`
         var media = JSON.parse(pp.media)
         media.forEach(i => {
@@ -928,16 +932,20 @@ async function submitpp(user, domain, title, description, media, solution) {
         .catch(error => {
             deleteuploadedfiles()
             console.log("res.error", error);
+            var errorshown = false
             setInterval(() => {
-                Swal.fire({
-                    title: "Error",
-                    text: error.message,
-                    icon: "error",
-                    confirmButtonText: "OK",
-                }).then(() => {
+                if (!errorshown) {
+                    Swal.fire({
+                        title: "Error",
+                        text: error.message,
+                        icon: "error",
+                        confirmButtonText: "OK",
+                    }).then(() => {
 
-                    // window.location.reload()
-                })
+                        // window.location.reload()
+                    })
+                }
+                errorshown = true
             }, 2000)
 
         })
@@ -963,10 +971,11 @@ function readBuffer(file) {
     const fr = new FileReader();
     fr.readAsArrayBuffer(file);
     fr.onload = f => {
-        const url = "https://script.google.com/macros/s/AKfycbw9xdNLGkgYPJJ5eEdnDpYJ3tMYJj5pawthFfceoZ-A6bEH7CEXUje6CpO5uQRyrXodjg/exec";  // <--- Please set the URL of Web Apps.
+        const url = v300
+        // "https://script.google.com/macros/s/AKfycbw9xdNLGkgYPJJ5eEdnDpYJ3tMYJj5pawthFfceoZ-A6bEH7CEXUje6CpO5uQRyrXodjg/exec";  // <--- Please set the URL of Web Apps.
         // https://script.google.com/macros/s/AKfycbw9xdNLGkgYPJJ5eEdnDpYJ3tMYJj5pawthFfceoZ-A6bEH7CEXUje6CpO5uQRyrXodjg/exec?
         const qs = new URLSearchParams({ filename: file.name, mimeType: file.type });
-        fetch(`${url}?${qs}`, {
+        fetch(`${url}${qs}`, {
             method: "POST", body: JSON.stringify([...new Int8Array(f.target.result)]), redirect: 'follow', headers: {
                 "Content-Type": "text/plain;charset=utf-8",
             },
@@ -1338,7 +1347,7 @@ function formatTimestamp(timestamp) {
     hours = hours ? hours : 12;
 
     // Format the string
-    const formattedDate = `${day}/${month}/${year} ${hours}:${minutes} ${ampm}`;
+    const formattedDate = `${day}/${month}/${year}; ${hours}:${minutes} ${ampm}`;
 
     return formattedDate;
 }
@@ -1359,7 +1368,11 @@ function verifyuser() {
 function displayusername() {
     user = JSON.parse(sessionStorage.getItem("user"))
     // console.log("displayusername", user);
-    document.getElementById("profile-name").innerText = user.name
+    try {
+        document.getElementById("profile-name").innerText = user.name
+    } catch (error) {
+
+    }
 }
 
 function logout() {
