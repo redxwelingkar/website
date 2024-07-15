@@ -26,10 +26,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        
+
                         <a class="nav-link " aria-current="page" href="../index.html">Home</a>
                     </li>
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="../projects.html" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
@@ -61,7 +61,7 @@
                         <a class="nav-link" href="../contact.html">Contact</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="./pcpauth.html">PPCP</a>
+                        <a class="nav-link active" href="./index.html">PPCP</a>
                     </li>
                 </ul>
             </div>
@@ -69,18 +69,23 @@
     </nav>
     <!-- Header End -->
 
-
     <div class="login">
-        <h1>Login</h1>
+        <h1>Register</h1>
         <form method="post">
-            <input id="login-email" class="Authinput" type="text" name="email" placeholder="Username"
+            <input id="signup-name" class="Authinput" type="text" name="name" placeholder="Name" required="required" />
+            <input id="signup-email" class="Authinput" type="email" name="email" placeholder="Email"
                 required="required" />
-            <input id="login-password" class="Authinput" type="password" name="password" placeholder="Password"
+            <input id="signup-password" class="Authinput" type="password" name="password" placeholder="Password"
                 required="required" />
-            <button id="loginbtn" type="button" class="Authbtn btn" onclick="login()">Login</button>
+            <input id="signup-id" class="Authinput" type="id" name="id" placeholder="Student ID / Roll No."
+                required="required" />
+            <input id="signup-program" class="Authinput" type="text" name="profile"
+                placeholder="Program Eg BD1 2023-2025" required="required" />
+
+            <button id="signupbtn" type="button" class="Authbtn btn" onclick="register()">Register</button>
 
         </form>
-        <a class="Authalernative btn" href="./register.html">Don't have a account? Register now</a>
+        <a class="Authalernative btn" href="./index.html">Have a account? Login now</a>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"
@@ -93,6 +98,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./assets/js/pcp.js"></script>
 
+
     <script>
         function encodeQuery(data) {
             let query = data.url
@@ -102,85 +108,81 @@
             return query.slice(0, -1)
         }
 
-        function enableloginbtn() {
+        function enablesignupbtn() {
             // enable login button
-            const loginbtn = document.getElementById("loginbtn")
-            loginbtn.removeAttribute("disabled")
-            loginbtn.classList.remove("disabled")
+            const signupbtn = document.getElementById("signupbtn")
+            signupbtn.removeAttribute("disabled")
+            signupbtn.classList.remove("disabled")
         }
-        function disableloginbtn() {
+        function disablesignupbtn() {
             // enable login button
-            const loginbtn = document.getElementById("loginbtn")
-            loginbtn.setAttribute("disabled", true)
-            loginbtn.classList.add("disabled")
+            const signupbtn = document.getElementById("signupbtn")
+            signupbtn.setAttribute("disabled", true)
+            signupbtn.classList.add("disabled")
         }
 
-        function validateFormLogin(email, password) {
+        function validateFormSignup(email, password, name, id, program) {
             if (!email || !/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) return "Please enter a valid email address";
             if (!password) return "Please enter a Password"
+            if (!name) return "Please enter a name"
+            if (!id) return "Please enter Student Roll number or Employee Id"
+            if (!program) return "Please enter a program or department"
         }
 
-        async function login() {
-            disableloginbtn()
-            // loader
+
+        async function register() {
+            disablesignupbtn()
             swal.fire("Please wait")
+            var email = document.getElementById("signup-email").value
+            var password = document.getElementById("signup-password").value
+            var name = document.getElementById("signup-name").value
+            var id = document.getElementById("signup-id").value
+            var program = document.getElementById("signup-program").value
 
-            var email = document.getElementById("login-email").value
-            var password = document.getElementById("login-password").value
-
-            const form = validateFormLogin(email, password)
+            const form = validateFormSignup(email, password, name, id, program)
             if (form) {
                 swal.fire("Error", form, "error")
-                enableloginbtn()
+                enablesignupbtn()
                 return
             }
-            // console.log("password", password);
+
+            console.log("password", password);
             var encrypted = CryptoJS.SHA3(password);
-            // console.log("encrypted", encrypted.words);
+            console.log("encrypted", encrypted.words);
             data = {
                 url: v300,
                 params: {
-                    'code': 'login',
+                    'code': 'signup',
+                    'name': name,
                     'email': email,
-                    'password': encrypted
+                    'password': encrypted,
+                    'program': program,
+                    'id': id
                 }
             }
             const query = encodeQuery(data)
+            console.log("query", query);
             const response = await fetch(query);
             const res = await response.json();
             if (response.status != 200) {
-                enableloginbtn()
+                enablesignupbtn()
                 alert("Request returned status code", res.status);
             }
             if (response.status === 200) {
                 if (res.error) {
-                    enableloginbtn()
+                    enablesignupbtn()
+                    console.log("Error Res",res);
                     swal.fire("Error", res.status, "error");
                 }
-                if (res.status != "SUCCESS") {
-                    enableloginbtn()
-                    swal.fire("Info", res.status, "info");
-                }
                 else {
-                    const user = res
-                    console.log("user", user);
-                    sessionStorage.setItem("user", JSON.stringify(res.user))
-                    if (user.user.access_status == "ADMIN" || user.user.access_status == "FACULTY") {
-                        console.log("user.access_status", user.access_status);
-                        window.location = "/PCP/facultyhome.html"
-                    }
-                    else {
-                        console.log("user.access_status", user.access_status);
-                        window.location = "/PCP/studenthome.html"
-                    }
+                    enablesignupbtn()
+                    swal.fire("Success!", "Please login with your credentials", "success");
                 }
             }
         }
 
 
-
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

@@ -18,7 +18,7 @@ var execsubmit = true
 /* Global states */
 
 /* Onpage load triggers */
-if (!window.location.href == "/pcpauth") {
+if (!window.location.href == "/index" || !window.location.href == "/") {
     if (!window.location.href == "/register") {
         verifyuser()
     }
@@ -50,7 +50,7 @@ function accessrequests() {
         if (user.access_status == "ADMIN") {
             // alert("Under Development")
             // alert("Redirected")
-            window.location.href = "/PCP/pcprequest.html"
+            window.location.href = "/PPCP/pcprequest.html"
             displayusername()
         } else {
             alert("Access Denied")
@@ -1361,7 +1361,7 @@ function verifyuser() {
         // displayName.innerText = user.name
     } else {
         alert("Session Expired, Please try Logining IN again or use a different browser")
-        window.location = "/PCP/pcpauth.html"
+        window.location = "/PPCP/index.html"
     }
 }
 
@@ -1377,7 +1377,7 @@ function displayusername() {
 
 function logout() {
     sessionStorage.removeItem("user")
-    window.location = "/PCP/pcpauth.html"
+    window.location = "/PPCP/index.html"
 
 }
 /* Abstraction */
