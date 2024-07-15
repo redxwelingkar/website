@@ -5,7 +5,7 @@ getUser()
 var user
 var activefilter = { "domain": "Clear Filter", "program": "Clear Filter", "status": "Clear Filter" }
 var searchby = "NA"
-if (window.location.pathname == "/PCP/pcpHome.html") {
+if (window.location.pathname == "/PPCP/pcpHome.html") {
     getPS()
     loadfilters()
 }
@@ -20,13 +20,13 @@ function getUser() {
 
     } else {
         alert("Could not fetch user, Please try Logining IN again or use a different browser")
-        window.location = "/PCP/pcpauth.html"
+        window.location = "/PPCP/index.html"
     }
 }
 
 function logout() {
     sessionStorage.removeItem("user")
-    window.location = "/PCP/pcpauth.html"
+    window.location = "/PPCP/index.html"
 
 }
 
@@ -502,7 +502,7 @@ function accessrequests() {
         if (user.user.acces_status == "ADMIN") {
             alert("Under Development")
             // alert("Redirected")
-            // window.location = "/PCP/pcprequest.html"
+            // window.location = "/PPCP/pcprequest.html"
         } else {
             alert("Access Denied")
             console.log("user", user)

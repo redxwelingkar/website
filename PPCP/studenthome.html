@@ -111,11 +111,11 @@
                 <label for="PSDescription" class="form-label">Description</label>
                 <textarea class="form-control" id="PSDescription" rows="3"></textarea>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 hidden">
                 <label for="PSSolution" class="form-label">Solution</label>
                 <textarea class="form-control" id="PSSolution" rows="3"></textarea>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 hidden">
                 <label for="Media" class="form-label">Images or Videos</label>
                 <div id="Media">
 
@@ -125,6 +125,7 @@
                     <input name="file" id="uploadfile" type="file" class="form-control" multiple>
                 </div>
             </div>
+            
             <button id="submitbtn" type="button" class="btn btn-primary mb-3"
                 onclick="checkSubmission()">Submit</button>
 
