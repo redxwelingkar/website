@@ -14,7 +14,9 @@
   <link href="assets/img/x.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +40,7 @@
 
 <body>
 
-<!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
@@ -57,10 +59,10 @@
               <li><a href="covid19projects.html">COVID-19 Projects</a></li>
               <li><a href="AR-page.html">AR Experience</a></li>
 
-             
+
             </ul>
           </li>
-          
+
           <li><a href="team.html">Team</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="careers.html">Careers</a></li>
@@ -80,172 +82,215 @@
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
-	  <br><br>
+        <br><br>
         <h2 class="portfolio-title">Early-Stage Apple Leaf Disease Prediction Model</h2>
         <div class="row">
 
           <div class="col-lg-8" style="max-width: 650px">
-            
-           
-              <img src="assets/img/apple-leaf.jpg">
-              
-            </div>          	  
+
+
+            <img src="assets/img/apple-leaf.jpg">
+
+          </div>
 
           <div class="col">
             <h4>Project information</h4>
-            
+
             <p>
-			Premature leaf fall, scab, Alternaria leaf spot, brown spot, mosaic, grey spot, and rust are common types of apple leaf diseases. Due to the arrival of monsoon, there is excess moisture in the air because of an outbreak of diseases in plants that is being witnessed in the hilly region. Farmers from these regions are always worried about the health of Apple plants. The scientists working in various departments, KrishiVigyanKendra’s, and regional research stations have given the required inputs to control the problems but that is not useful to identify the problem in the early stage. Also, the current disease diagnosis based on human scouting is time-consuming and expensive. Our proposed system identifies various apple leaf diseases in an early stage that will alert the farmers and nearby research institutes to take appropriate action to control it.
+              Premature leaf fall, scab, Alternaria leaf spot, brown spot, mosaic, grey spot, and rust are common types
+              of apple leaf diseases. Due to the arrival of monsoon, there is excess moisture in the air because of an
+              outbreak of diseases in plants that is being witnessed in the hilly region. Farmers from these regions are
+              always worried about the health of Apple plants. The scientists working in various departments,
+              KrishiVigyanKendra’s, and regional research stations have given the required inputs to control the
+              problems but that is not useful to identify the problem in the early stage. Also, the current disease
+              diagnosis based on human scouting is time-consuming and expensive. Our proposed system identifies various
+              apple leaf diseases in an early stage that will alert the farmers and nearby research institutes to take
+              appropriate action to control it.
             </p>
           </div>
         </div>
-		<br>
-		
-		<p> The dataset contains 1821 images of apple leaves which has normal leaves, scab, rust, and other disease infected leaves. The proposed regional convolutional neural network-based approach is capable of localizing and classifying the disease with 90% accuracy.</p>
-		
         <br>
-	
-	    <h4>Problem Statement</h4>
-		<p>Agriculture plays an important role in the economy of every country. Produce produced by farmers must be in a proper condition to achieve expected profit. Advancements in technology must be used in this domain to save and make products market ready. But due to continuous change in weather and lack of technology access in this field, farmers are facing a huge challenge to protect their produce from different diseases that are unexpected and occurred at any time.</p>
-		
-		<h4>Proposed methodology</h4>
-		<p>The proposed method is based on Mask-RCNN (Regional Convolutional Neural Network). Mask RCNN is an extension of faster RCNN. RCNN is an object detection algorithm which is also used for image segmentation and masking. It is a pixel level classification that determines which all pixels belong to which object. The Mask-RCNN architecture is divided into three parts. First pretrained model of CNN, second Region Proposal Network(RPN) and last is fully connected layer and output. Backbone to this algorithm is ResNet50 which is used to extract the features of images. Detailed pipeline of proposed method is shown in figure 1, below.</p>
-		
-    <div class="row">
-		<div class="col" style="max-width: 420px;">
-		<img src="assets/img/al-fig1.jpg" width="400px">
-		<br><br>
-		<img src="assets/img/al-fig2.jpg" width="400px">
-    </div>
-  
-    <div class="col" >
-    <p>Initially we have used weights of pre trained model trained on plant pathology 2020 dataset. Last layer of this pretrained model architecture is a fully connected layer that has a softmax activation function. Feature maps from this model is used as an input to the Region Proposal network.</p>
-        
-		
-		<h5><b>Region Proposal network:</b></h5>
-		<p>Region proposal is an area where objects can possibly be found. It uses CNN to find regions of interest using binary classifiers. CNN layers of Regressor plot bounding box around possible objects and later by finding Intersection over Union we can decide which boxes possibly contain regions of interest. Region of Interest (ROI) can be calculated by dividing area of intersection by area of union.Once regions of interest get finalized, the next step is to have ROI Pooling.</p> 
-		<p>This step gets input from CNN as a feature map and Region of interests from regressor. ROI pooling is used to extract fixed size windows from feature maps that is helpful to extract labels as a final output. It will produce fixed size feature map from different size regions using max pooling and the size of max pool window will be of 7*7*512.</p>
-               
-       
-    </div>
-    </div>
 
-    <br><br>
-    <div class="row">
-    <div class="col" style="max-width: 420px;">
-		
-		<div>
-		<img src="assets/img/al-fig3.jpg" width="400px" height="800" class="img-fluid">
-		</div>
-    </div>
-    <div class="col">
-        <h5><b>Experimental Setup Dataset:</b></h5>    
-		<p>The Plant Pathology 2020 dataset is publicly available sponsored by The Cornell Initiative for Digital Agriculture and FGVC7.It has 1821 leaf images. It contains 4 classes: healthy (516 images), multiple_ diseases (91 images), rust (622 images), scab (592 images). Figure 2 shows sample images from Plant Pathology 2020 dataset.</p>
-		<br>
-		<h5><b>Image Annotation:</b></h5> 
-	    <p>We have used VGG image Annotator to annotate each image manually. Using this tool, we obtained annotation in .json file for train and test dataset. We have kept this file in the train and test folder respectively.</p>
-        		
+        <p> The dataset contains 1821 images of apple leaves which has normal leaves, scab, rust, and other disease
+          infected leaves. The proposed regional convolutional neural network-based approach is capable of localizing
+          and classifying the disease with 90% accuracy.</p>
+
+        <br>
+
+        <h4>Problem Statement</h4>
+        <p>Agriculture plays an important role in the economy of every country. Produce produced by farmers must be in a
+          proper condition to achieve expected profit. Advancements in technology must be used in this domain to save
+          and make products market ready. But due to continuous change in weather and lack of technology access in this
+          field, farmers are facing a huge challenge to protect their produce from different diseases that are
+          unexpected and occurred at any time.</p>
+
+        <h4>Proposed methodology</h4>
+        <p>The proposed method is based on Mask-RCNN (Regional Convolutional Neural Network). Mask RCNN is an extension
+          of faster RCNN. RCNN is an object detection algorithm which is also used for image segmentation and masking.
+          It is a pixel level classification that determines which all pixels belong to which object. The Mask-RCNN
+          architecture is divided into three parts. First pretrained model of CNN, second Region Proposal Network(RPN)
+          and last is fully connected layer and output. Backbone to this algorithm is ResNet50 which is used to extract
+          the features of images. Detailed pipeline of proposed method is shown in figure 1, below.</p>
+
+        <div class="row">
+          <div class="col" style="max-width: 420px;">
+            <img src="assets/img/al-fig1.jpg" width="400px">
+            <br><br>
+            <img src="assets/img/al-fig2.jpg" width="400px">
+          </div>
+
+          <div class="col">
+            <p>Initially we have used weights of pre trained model trained on plant pathology 2020 dataset. Last layer
+              of this pretrained model architecture is a fully connected layer that has a softmax activation function.
+              Feature maps from this model is used as an input to the Region Proposal network.</p>
+
+
+            <h5><b>Region Proposal network:</b></h5>
+            <p>Region proposal is an area where objects can possibly be found. It uses CNN to find regions of interest
+              using binary classifiers. CNN layers of Regressor plot bounding box around possible objects and later by
+              finding Intersection over Union we can decide which boxes possibly contain regions of interest. Region of
+              Interest (ROI) can be calculated by dividing area of intersection by area of union.Once regions of
+              interest get finalized, the next step is to have ROI Pooling.</p>
+            <p>This step gets input from CNN as a feature map and Region of interests from regressor. ROI pooling is
+              used to extract fixed size windows from feature maps that is helpful to extract labels as a final output.
+              It will produce fixed size feature map from different size regions using max pooling and the size of max
+              pool window will be of 7*7*512.</p>
+
+
+          </div>
+        </div>
+
+        <br><br>
+        <div class="row">
+          <div class="col" style="max-width: 420px;">
+
+            <div>
+              <img src="assets/img/al-fig3.jpg" width="400px" height="800" class="img-fluid">
+            </div>
+          </div>
+          <div class="col">
+            <h5><b>Experimental Setup Dataset:</b></h5>
+            <p>The Plant Pathology 2020 dataset is publicly available sponsored by The Cornell Initiative for Digital
+              Agriculture and FGVC7.It has 1821 leaf images. It contains 4 classes: healthy (516 images), multiple_
+              diseases (91 images), rust (622 images), scab (592 images). Figure 2 shows sample images from Plant
+              Pathology 2020 dataset.</p>
+            <br>
+            <h5><b>Image Annotation:</b></h5>
+            <p>We have used VGG image Annotator to annotate each image manually. Using this tool, we obtained annotation
+              in .json file for train and test dataset. We have kept this file in the train and test folder
+              respectively.</p>
+
+          </div>
+        </div>
+
+        <br>
+
+        <h5><b>Train the ResNet50 CNN for feature maps:</b></h5>
+        <p>We have trained ResNet50 CNN algorithms on The Plant Pathology 2020 dataset. We have considered feature maps
+          of the images. Images have been resized to 224x224x3 and then divided into two parts: train and test. Train
+          data contains 80% of overall images and the rest all are in test data. To fit the data properly we normalized
+          the image pixel values. To reduce overfitting and to improve the overall performance of the model image
+          augmentation has been used which will help to generalize the model. During the training phase we have used
+          Adam optimizer with 0.001 learning rate, categorical cross entropy loss function and batch size as 10. After
+          training we have saved weights of the model in .h5 format so that it can be used to train Mask-RCNN.</p>
+
+        <div class="row">
+          <div class="col-lg-8">
+
+            <img src="assets/img/al-fig4.jpg" style="margin-right: 25px" width="350px">
+            <img src="assets/img/al-fig5.jpg" width="350px">
+          </div>
+        </div>
+        <br><br>
+
+        <h5><b>Training of Mask-RCNN:</b></h5>
+        <p>During the training phase of Mask RCNN proposed methodology uses ResNet50 as a backbone as it takes less time
+          than ResNet101 or ResNext101 due to less numbers of layers. Detection minimum confidence set to 0.90.
+          Remaining all other parameters are kept as default to train the model.</p>
+
+        <div class="row">
+          <div class="col-lg-8">
+
+            <img src="assets/img/al-fig6.jpg" style="margin-right: 25px" width="400px">
+          </div>
+        </div>
+
+        <br>
+
+        <h5><b>The Results of Mask-RCNN:</b></h5>
+        <p>As the results shown in fig algorithm performs well and can predict the disease accurately. It annotates the
+          object (disease patches) correctly with confidence.</p>
+
+
       </div>
-    </div>      
-      
-    <br>    
-    
-    <h5><b>Train the ResNet50 CNN for feature maps:</b></h5>
-    <p>We have trained ResNet50 CNN algorithms on The Plant Pathology 2020 dataset. We have considered feature maps of the images. Images have been resized to 224x224x3 and then divided into two parts: train and test. Train data contains 80% of overall images and the rest all are in test data. To fit the data properly we normalized the image pixel values. To reduce overfitting and to improve the overall performance of the model image augmentation has been used which will help to generalize the model. During the training phase we have used Adam optimizer with 0.001 learning rate, categorical cross entropy loss function and batch size as 10. After training we have saved weights of the model in .h5 format so that it can be used to train Mask-RCNN.</p>	
-    		
-	<div class="row">
-    <div class="col-lg-8">
-		
-		<img src="assets/img/al-fig4.jpg" style="margin-right: 25px" width="350px">
-		<img src="assets/img/al-fig5.jpg" width="350px">	
-    </div>
-    </div>
-    <br><br>
-	
-	<h5><b>Training of Mask-RCNN:</b></h5>
-	<p>During the training phase of Mask RCNN proposed methodology uses ResNet50 as a backbone as it takes less time than ResNet101 or ResNext101 due to less numbers of layers. Detection minimum confidence set to 0.90. Remaining all other parameters are kept as default to train the model.</p>
-	
-    <div class="row">
-    <div class="col-lg-8">
-		
-		<img src="assets/img/al-fig6.jpg" style="margin-right: 25px" width="400px">
-    </div>
-    </div>
-    
-	<br>
-    
-	<h5><b>The Results of Mask-RCNN:</b></h5>
-    <p>As the results shown in fig algorithm performs well and can predict the disease accurately. It annotates the object (disease patches) correctly with confidence.</p>
-    	
-	
-	</div>
     </section><!-- End Portfolio Details Section -->
 
   </main><!-- End #main -->
-  
-      <section id="team" class="team">
-      <div class="container">
-        <h3>Team</h3>
-		<div class="row">
-		  <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/Untitled-9.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Amit Gawade</h4>
-                <span>Senior Innovation Engineer</span>
-                <p>REDX WeSchool, Mumbai</p>
-		<div class="social">                                  
-                  <a href="https://www.linkedin.com/in/amit-gawade/"> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-                
+
+  <section id="team" class="team">
+    <div class="container">
+      <h3>Team</h3>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/team/Untitled-9.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>Amit Gawade</h4>
+              <span>Senior Innovation Engineer</span>
+              <p>REDX WeSchool, Mumbai</p>
+              <div class="social">
+                <a href="https://www.linkedin.com/in/amit-gawade/"> <i class="ri-linkedin-box-fill"></i> </a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/team/Untitled-10.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>Dr. Subodh Deolekar</h4>
+              <span>Lead Research Engineer</span>
+              <p>Assistant Prof. Research & Business Analytics<br>at Welingkar Institute</p>
+              <div class="social">
+                <a href="https://https://www.linkedin.com/in/dr-subodh/"> <i class="ri-linkedin-box-fill"></i> </a>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/Untitled-10.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Dr. Subodh Deolekar</h4>
-                <span>Lead Research Engineer</span>		
-                <p>Assistant Prof. Research & Business Analytics<br>at Welingkar Institute</p>
-		<div class="social">                                  
-                  <a href="https://https://www.linkedin.com/in/dr-subodh/"> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>	     
+        <div class="col-lg-6">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/team/team-4.4.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>Prof. Dr. Vaishali Patil</h4>
+              <p>Associate Dean - Research & Publications <br>& Information Technology <br>at Welingkar Institute</p>
+              <div class="social">
+                <a href="https://www.linkedin.com/in/dr-vaishali-patil-8b853a139/"> <i class="ri-linkedin-box-fill"></i>
+                </a>
+              </div>
             </div>
           </div>
-		  
-		    <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/team-4.4.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Prof. Dr. Vaishali Patil</h4>                								
-                <p>Associate Dean - Research & Publications <br>& Information Technology <br>at Welingkar Institute</p>
-	       <div class="social">                                  
-                  <a href="https://www.linkedin.com/in/dr-vaishali-patil-8b853a139/"> <i class="ri-linkedin-box-fill"></i> </a>
-                </div>
-              </div>             
-            </div>
-          </div>
-		  </div>
-		  </section>
-		 
-		  
-<!-- ======= Footer ======= -->
-<footer id="footer">
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
+        </div>
+      </div>
+  </section>
 
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-info">
-            <h3>REDX WeSchool</h3>
-            <p>
-             Welingkar Institute of Management Development and Research, <br>
-             Lakhamsi Nappu Road,<br>
-             Matunga East, Mumbai, Maharashtra 400019<br><br>
-            </p>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>REDX WeSchool</h3>
+              <p>
+                Welingkar Institute of Management Development and Research, <br>
+                Lakhamsi Nappu Road,<br>
+                Matunga East, Mumbai, Maharashtra 400019<br><br>
+              </p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6"></div>
@@ -255,20 +300,22 @@
             <strong>Phone:</strong> 022 2419 8300 Extn: 5045<br>
             <strong>Email:</strong> redx@welingkarmail.org<br>
             <div class="footer-info">
-            <div class="social-links mt-3">
-              <a href="https://twitter.com/redxweschool" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="https://www.facebook.com/redxweschool" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/redxweschool/" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="https://www.linkedin.com/school/6582614/admin/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              <a href="https://www.youtube.com/channel/UCcwe010A399T4hGu9b9nW4w" class="youtube"><i class="bx bxl-youtube"></i></a>
-            </div>
+              <div class="social-links mt-3">
+                <a href="https://twitter.com/redxweschool" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/redxweschool" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/redxweschool/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://www.linkedin.com/school/6582614/admin/" class="linkedin"><i
+                    class="bx bxl-linkedin"></i></a>
+                <a href="https://www.youtube.com/channel/UCcwe010A399T4hGu9b9nW4w" class="youtube"><i
+                    class="bx bxl-youtube"></i></a>
+              </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
-<!-- End Footer -->	  
+  </footer>
+  <!-- End Footer -->
 
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
