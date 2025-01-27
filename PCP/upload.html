@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Actor" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <title>PPCP</title>
+</head>
+
+<!-- onload="onloadstudenthome()" -->
+
+<body onload="onloadupload()">
+
+    <!-- <body> -->
+    <!-- NavBar -->
+    <nav class="top-line navbar">
+        <div class="d-flex container-fluid">
+            <div class="d-flex justify-content-start gap-4">
+
+                <img src="./assets/img/we_logo.svg" alt="WeSchool" srcset="">
+                <img src="./assets/img/x_logo.svg" alt="REDX" srcset="">
+            </div>
+            <img src="./assets/img/ppcp_logo.svg" alt="PPCP" srcset="">
+            <div class="d-flex justify-content-end gap-4">
+                <img src="./assets/img/profile.svg" alt="profile" srcset="">
+                <img src="./assets/img/logout.svg" alt="Logout" onclick="logout()">
+            </div>
+        </div>
+    </nav>
+    <!-- NavBar -->
+
+    <div class="line"></div>
+    <!-- upload form
+    <div id="uploadformbg" onclick="closeAdd()">
+    </div>-->
+    <!-- <div id="uploadform" class="border rounded-3 shadow p-3">  -->
+    <form id="ppform" class="justify-content-center">
+        <em><b>
+                <p class="navbar-brand text-center">Paint Point Upload form</p>
+            </b></em>
+
+        <div class="dropdown mb-3">
+            <label for="ActiveDomainbtn" class="form-label">Domain</label>
+            <button id="ActiveDomainbtn" class="btn dropdown-toggle border" type="button" data-bs-toggle="dropdown"
+                aria-expanded="false">Select Domain</button>
+            <ul id="ActiveDomain" class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Loading Please wait... </a></li>
+            </ul>
+        </div>
+
+        <div class="mb-3">
+            <label for="PSTitle" class="form-label">Title</label>
+            <input type="text" class="form-control" id="PSTitle" placeholder="Title of your pain point">
+        </div>
+        <div class="mb-3">
+            <label for="PSDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="PSDescription" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="PSSolution" class="form-label">Solution</label>
+            <textarea class="form-control" id="PSSolution" rows="3"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="Media" class="form-label">Images or Videos</label>
+            <div id="Media">
+
+            </div>
+            <!-- <div class="btn btn-secondary" onclick="adduploadbtn()">ADD +</div> -->
+            <div class="input-group" id="uploadgroup${count}">
+                <input name="file" id="uploadfile" type="file" class="form-control" multiple>
+            </div>
+        </div>
+        <button id="submitbtn" type="button" class="btn btn-primary mb-3" onclick="checkSubmission()">Submit</button>
+
+    </form>
+
+    <!-- </div> -->
+
+
+
+    <a id="floatingbackbtn" style="display: block;" href="./studenthome.html"><img class="fixedButton" src="./assets/img/circle-arrow-left-solid.svg" alt="back"
+            srcset=""></a>
+
+
+    <!-- upload form -->
+
+    <!-- Popup: uploading files -->
+    <div id="popupwait" class="border rounded-3 shadow p-3">
+        <div class="d-flex flex-column justify-content-center align-items-center">
+            <h2>Please Wait</h2>
+            <img style="height: 40%; width: 40%;" src="./assets/img/info-orange.svg" alt="wait" srcset="">
+            <h1>Uploading Files</h1>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/pcp.js"></script>
+</body>
+
+</html>
