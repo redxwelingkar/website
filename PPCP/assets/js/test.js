@@ -1,4 +1,6 @@
-const v300 = "https://script.google.com/macros/s/AKfycbzPSXRntXbqVZ-tfmJazl44EkTU8sCsv7xT0wQJKDI_DtQHYqNw2wvBKML_HJjRstcC/exec?";
+const api_url = "https://script.google.com/macros/s/AKfycbxLNOXKn86kq1HcVYxhersvP6YWAirdmWskOBukKxKJnESS4zL4AC0w6GFSUkA7o0jC7w/exec?";
+// const api_url = "https://script.google.com/macros/s/AKfycbzPSXRntXbqVZ-tfmJazl44EkTU8sCsv7xT0wQJKDI_DtQHYqNw2wvBKML_HJjRstcC/exec?";
+var result1 = "NA"
 
 function adduploadbtn() {
     const media = document.getElementById("Media")
@@ -70,4 +72,32 @@ function checkresult(result) {
     // checkforupload()
 }
 
+async function doPost() {
+    const url = "https://script.google.com/macros/s/AKfycby90UOLo3KpUu8wtvcBA7mLiu6CfZ2Y8Ic4NNsp4Vx6QnRpvT2ucEe-Y4fdk0FwVX3U/exec";
 
+    result1 = await fetch(url, {
+        method: "POST",
+        // params: {
+        //     data1: "This is data1",
+        //     data2: "This is data2",
+        // },
+        body: {
+            data1: "This is data1",
+            data2: "This is data2",
+        },
+        // mode: "no-cors",
+        redirect: 'follow',
+        headers: {
+            "Content-Type": "json",
+            // "Content-Type": "text/plain",
+            "Host": "script.google.com",
+        }
+    }).then(res => {
+        console.log("res.json", res);
+    }).then(result => {
+        console.log("result", result);
+    }).catch(error => {
+        console.log("error", error);
+    })
+
+}

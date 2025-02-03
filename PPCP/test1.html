@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Favicons -->
+    <link href="../assets/img/x.png" rel="icon">
+    <link href="../assets/img/x.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+    <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="../assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+    <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+    <link href="../assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="../assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="../assets/css/style.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="./assets/css/styletest.css" />
+    <link href="https://fonts.googleapis.com/css?family=Actor" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <title>TEST</title>
+</head>
+
+<body>
+    <!-- ======= Header ======= -->
+    <header id="header" class="fixed-top ">
+        <div class="container d-flex align-items-center">
+
+            <h1 class="logo"><a href="../index.html">REDX WeSchool</a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+
+            <nav class="nav-menu d-none d-lg-block">
+
+                <ul>
+                    <li class="active"><a href="../index.html">Home</a></li>
+
+                    <li class="drop-down"><a href="../projects.html">Projects</a>
+                        <ul>
+                            <li><a href="publications.html">Publications & Patents</a></li>
+                            <li><a href="covid19projects.html">COVID-19 Projects</a></li>
+                            <li><a href="AR-page.html">AR Experience</a></li>
+
+
+                        </ul>
+                    </li>
+
+                    <li><a href="../team.html">Team</a></li>
+                    <li class="drop-down"><a href="../events.html">Events</a>
+                        <ul>
+                            <li><a href="we4tech/index.html">We4Tech</a></li>
+                            <li><a href="sih2022/index.html">Smart India Hackathon</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../careers.html">Careers</a></li>
+                    <li><a href="../contact.html">Contact</a></li>
+                    <li><a href="./pcpauth.html">PCP</a></li>
+
+                </ul>
+
+            </nav><!-- .nav-menu -->
+
+
+
+        </div>
+    </header><!-- End Header -->
+
+    <div class="login">
+        <h1>Login</h1>
+        <form method="post">
+            <input id="login-email" class="Authinput" type="text" name="email" placeholder="Username"
+                required="required" />
+            <input id="login-password" class="Authinput" type="password" name="password" placeholder="Password"
+                required="required" />
+            <button id="loginbtn" type="button" class="Authbtn btn" onclick="test()">Login</button>
+
+        </form>
+        <a class="Authalernative btn" href="./register.html">Don't have a account? Register now</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/test.js"></script>
+    <script>
+        function test() {
+
+            Swal.fire({
+                position:"top-end",
+                title: "Success",
+                text: "Pain Point has been submitted",
+                icon: "success",
+                confirmButtonText: "OK",
+            }).then((result)=>{
+                window.location.reload()
+            })
+            setInterval(()=>{
+                window.location.reload()
+            },2000)
+        }
+    </script>
+</body>
+</body>
+
+</html>

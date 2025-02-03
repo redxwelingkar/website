@@ -1,6 +1,8 @@
-const v300 = "https://script.google.com/macros/s/AKfycbzih8ULE0nVqDar6nIwiei4H8OYBEF1WFkSlyBincutBjoajPfZ-KyQ76_F2k6XBK4mxQ/exec?";
+const api_url = "https://script.google.com/macros/s/AKfycbxLNOXKn86kq1HcVYxhersvP6YWAirdmWskOBukKxKJnESS4zL4AC0w6GFSUkA7o0jC7w/exec?";
 
 /* Global states */
+
+// TODO : change loading popups
 
 var activefilter = { "domain": "Clear Filter", "program": "Clear Filter", "status": "Clear Filter" }
 var searchby = "NA"
@@ -43,6 +45,12 @@ function onloadrequests() {
     getnewrequests()
 }
 
+function onloadupload() {
+    verifyuser()
+    getactivedomains()
+}
+
+
 function accessrequests() {
     // TODO: secure routes from backend
     verifyuser()
@@ -63,7 +71,7 @@ function accessrequests() {
 /* Get from DB */
 async function getPP() {
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': 'readall'
         }
@@ -82,7 +90,7 @@ async function getPP() {
 
 async function getfilters() {
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': 'getfilters'
         }
@@ -102,7 +110,7 @@ async function getnewrequests() {
     newuser.innerHTML = `<h4>Loading Please Wait...</h4>`
 
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': 'getnewusers'
         }
@@ -130,7 +138,7 @@ async function getPPbyemail() {
     const email = user.email;
 
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': 'email',
             'email': email
@@ -156,7 +164,7 @@ async function getPPbyemail() {
 
 async function getactivedomains() {
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': 'getactivedomains',
         }
@@ -185,7 +193,7 @@ async function tag(id, status) {
     }
 
     data = {
-        url: v300,
+        url: api_url,
         params: {
             code: "markstatus",
             uuid: id,
@@ -218,7 +226,7 @@ async function handlenewuserrequest(btn) {
 
     if (status == "Accept") code = "grantaccess";
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': code,
             'uuid': userID
@@ -739,7 +747,7 @@ async function getremarks(uuid) {
     const RemarksSection = document.getElementById("RemarksSection");
     RemarksSection.innerText = "Loading remarks";
     data = {
-        url: v300,
+        url: api_url,
         params: {
             code: "readremarks",
             uuid: uuid,
@@ -794,7 +802,7 @@ async function saveremark() { // continue here 06/02
     saveremarkbtn.setAttribute("disabled", true)
     var uuid = document.getElementById("P-ID").innerText
     data = {
-        url: v300,
+        url: api_url,
         params: {
             code: "remark",
             uuid: uuid,
@@ -821,11 +829,12 @@ async function checkSubmission() {
     */
     const uploadfile = document.getElementById(`uploadfile`);
     const fr = new FileReader();
-    Swal.fire("Please wait", "Uploading Pain Point", "info")
+    // Swal.fire("Please wait", "Uploading Pain Point", "info")
     disablesubmit()
+    popupwaitshow()
     if (PSformval()) {
         if (uploadfile.files.length > 0) {
-            Swal.fire("Please wait", "Uploading Files", "info")
+            // Swal.fire("Please wait", "Uploading Files", "info")
 
             // upload file limit 10 mb
             var bufferread = true
@@ -834,6 +843,7 @@ async function checkSubmission() {
                 const filesize = uploadfile.files[i].size;
                 if (filesize > maxfilesize) {
                     bufferread = false
+                    popupwaithide()
                     Swal.fire("File Size limit 10 mb", `File: ${uploadfile.files[i].name} cannot be uploaded`, "error")
                     enablesubmit()
                     console.log("break called");
@@ -893,7 +903,7 @@ function ppformsubmit() {
 async function submitpp(user, domain, title, description, media, solution) {
     console.log("submitpp called");
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': 'addpp',
             'email': user.email,
@@ -922,10 +932,10 @@ async function submitpp(user, domain, title, description, media, solution) {
                     icon: "success",
                     confirmButtonText: "OK",
                 }).then(() => {
-                    window.location.reload()
+                    window.location.href='../PCP/studenthome.html' 
                 })
                 setInterval(() => {
-                    window.location.reload()
+                    window.location.href='../PCP/studenthome.html'
                 }, 2000)
             }
         })
@@ -971,9 +981,7 @@ function readBuffer(file) {
     const fr = new FileReader();
     fr.readAsArrayBuffer(file);
     fr.onload = f => {
-        const url = v300
-        // "https://script.google.com/macros/s/AKfycbw9xdNLGkgYPJJ5eEdnDpYJ3tMYJj5pawthFfceoZ-A6bEH7CEXUje6CpO5uQRyrXodjg/exec";  // <--- Please set the URL of Web Apps.
-        // https://script.google.com/macros/s/AKfycbw9xdNLGkgYPJJ5eEdnDpYJ3tMYJj5pawthFfceoZ-A6bEH7CEXUje6CpO5uQRyrXodjg/exec?
+        const url = api_url
         const qs = new URLSearchParams({ filename: file.name, mimeType: file.type });
         fetch(`${url}${qs}`, {
             method: "POST", body: JSON.stringify([...new Int8Array(f.target.result)]), redirect: 'follow', headers: {
@@ -1009,7 +1017,7 @@ function deleteuploadedfiles() {
 const deleteFilebyId = (fileId) => {
     return new Promise((resolve, reject) => {
         data = {
-            url: v300,
+            url: api_url,
             params: {
                 'code': 'deleteFile',
                 'fileId': fileId
@@ -1034,10 +1042,22 @@ function closeAdd() {
     document.getElementById("uploadformbg").style.display = "none";
 }
 function enablesubmit() {
-    document.getElementById(`submitbtn`).removeAttribute("disabled")
+    document.getElementById(`submitbtn`).removeAttribute("disabled");
+    document.getElementById("popupwait").style.display = "none";
+
 }
 function disablesubmit() {
     document.getElementById(`submitbtn`).setAttribute("disabled", "disabled");
+    
+}
+function popupwaitshow(){
+    document.getElementById("popupwait").style.display = "block";
+    document.getElementById("floatingbackbtn").style.display = "none";
+}
+
+function popupwaithide(){
+    document.getElementById("popupwait").style.display = "none";
+    document.getElementById("floatingbackbtn").style.display = "block";
 }
 function setactivedomains(res) {
     const ActiveDomain = document.getElementById("ActiveDomain")
@@ -1170,7 +1190,7 @@ function displayuploads() {
 
 async function deletefile(fileId) {
     data = {
-        url: v300,
+        url: api_url,
         params: {
             'code': 'deleteFile',
             'fileId': fileId
