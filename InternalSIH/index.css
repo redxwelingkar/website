@@ -1,0 +1,36 @@
+html,body{
+    height: 100%;
+}
+
+body{
+    background-image: url(./images/bg.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.redxlogo{
+    max-height: 50px;
+    min-height: auto;
+}
+/* 50 60 100 */
+.sihlogo{
+    max-height: 100px;
+    min-height: 30px;
+}
+
+.welingkarlogo{
+    max-height: 100px;
+    min-height: auto;
+}
+
+.logo_header{
+    /* overflow: auto; */
+    /* overflow-x: auto; */
+    word-wrap: break-word;
+    white-space: break-spaces;
+}
+.homeposter{
+    max-width: 40%;
+}
+.modalposter{
+    max-width: 100%;
+}
