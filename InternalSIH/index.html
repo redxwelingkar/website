@@ -14,13 +14,22 @@
     <title>Internal Smart India Hackathon</title>
 </head>
 
-<body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand d-flex align-items-center" href="#">
+<body class="homeBody">
+    <div class="container-fluid bg-white">
+        <div class="container ">
+            <a href="../index.html">
+                <img class="redxtext" src="../redxtext.PNG" alt="REDX WeSchool">
+            </a>
+        </div>
+    </div>
+    <nav class="navbar navbar-expand-lg bg-white">
+
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="../InternalSIH/index.html">
                 <img class="m-2 sihlogo" src="./images/SIH_logo.png" alt="SIH">
                 <span class="logo_header">Internal Smart India Hackathon</span>
             </a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,7 +37,13 @@
             <div class="collapse navbar-collapse  justify-content-end " id="navbarNav">
                 <ul class="navbar-nav ">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">About</a>
+                        <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./gallery.html">Gallery</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./about.html">About</a>
                     </li>
                     <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Features</a>
@@ -43,22 +58,27 @@
             </div>
         </div>
     </nav>
-
-    <div class="text-center d-sm-flex justify-content-sm-evenly align-items-sm-center">
-        <h1 class="text-white">Coming Soon</h1>
-        <img class="m-4 homeposter" src="./images/SIH_Home_Poster.png" alt="" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    <div class="">
+        <br><br><br>
+        <div class=" text-center d-sm-flex justify-content-sm-evenly align-items-sm-center">
+            <div>
+                <h3 class="text-white">SIH 2025</h3>
+                <h1 class="text-white">Coming Soon</h1>
+            </div>
+            <img class="m-4 homeposter" src="./images/SIH_Home_Poster.png" alt="" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
+        </div>
     </div>
-
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+        <div class="modal-dialog modal-dialog-centered fullscreen">
+            <div class="modal-content ">
                 <div class="modal-header">
                     <!-- <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1> -->
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="text-center modal-body">
                     <img class="modalposter" src="./images/SIH_Home_Poster.png" alt="">
                 </div>
             </div>
