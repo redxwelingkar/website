@@ -2,7 +2,7 @@ html,body{
     height: 100%;
 }
 
-body{
+.homeBody{
     background-image: url(./images/bg.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -21,6 +21,13 @@ body{
     max-height: 100px;
     min-height: auto;
 }
+.redxtext{
+    display: inline-block;
+    min-height: 1rem;
+    max-height: 2rem;
+    margin-right: 20px;
+    margin-top: 20px;
+}
 
 .logo_header{
     /* overflow: auto; */
@@ -28,9 +35,27 @@ body{
     word-wrap: break-word;
     white-space: break-spaces;
 }
+
 .homeposter{
     max-width: 40%;
 }
 .modalposter{
     max-width: 100%;
+}
+
+.fullscreen{
+    max-width: fit-content;
+    max-height:fit-content;
+}
+
+.active{
+    color: #478ac9 !important;
+}
+
+.italics{
+    font-style: italic;
+}
+
+.nav-item{
+    padding: 10px 20px
 }
