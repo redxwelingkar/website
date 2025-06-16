@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>REDX | Use of Deep Learning Based Frameworks on Pixel Scaled Images of Chest CT Scans for Detection of COVID-19</title>
+  <title>REDX | Use of Deep Learning Based Frameworks on Pixel Scaled Images of Chest CT Scans for Detection of COVID-19
+  </title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -14,7 +15,9 @@
   <link href="assets/img/x.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -38,7 +41,7 @@
 
 <body>
 
-<!-- ======= Header ======= -->
+  <!-- ======= Header ======= -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
@@ -53,19 +56,17 @@
 
           <li class="drop-down active"><a href="projects.html">Projects</a>
             <ul>
-              <li><a href="publications.html">Publications & Patents</a></li>
-              <li><a href="covid19projects.html">COVID-19 Projects</a></li>
-              <li><a href="AR-page.html">AR Experience</a></li>
-
-             
+              <li><a href="patents.html">Patents</a></li>
+              <li><a href="publications.html">Publications</a></li>
+              <li><a href="projects.html">Projects</a></li>
             </ul>
           </li>
-          
+
           <li><a href="team.html">Team</a></li>
           <li><a href="events.html">Events</a></li>
           <li><a href="careers.html">Careers</a></li>
           <li><a href="contact.html">Contact</a></li>
-
+          <li><a href="/PPCP/index.html">PPCP</a></li>
         </ul>
 
       </nav><!-- .nav-menu -->
@@ -80,112 +81,161 @@
     <!-- ======= Portfolio Details Section ======= -->
     <section id="portfolio-details" class="portfolio-details">
       <div class="container">
-	  <br><br>
-      <h2 class="portfolio-title">Use of Deep Learning Based Frameworks on Pixel Scaled Images of Chest CT Scans for Detection of COVID-19</h2>
-           
+        <br><br>
+        <h2 class="portfolio-title">Use of Deep Learning Based Frameworks on Pixel Scaled Images of Chest CT Scans for
+          Detection of COVID-19</h2>
+
         <div class="row">
 
           <div class="col" style="max-width: 750px">
-            
-              <img src="assets/img/chest-ct.jpg">
-              
-            </div>          	  
+
+            <img src="assets/img/chest-ct.jpg">
+
+          </div>
 
           <div class="col">
             <h4>Project information</h4>
-           
-            <p>As on 15th September 2020, the total cases of SARS-CoV-2 infected patients in the world has crossed 29 million, with more than 930,000 deaths occurring due to the virus. Real time RT-PCR (Reverse Transcription Polymerase Chain Reaction), which is the standard detection method for COVID-19, is likely to have low detection rate in early stages of the infection possibly due to less viral load in the patients. On the other hand, in comparison to RT-PCR, patterns obtained from radiography on chest CT scans show higher sensitivity and specificity. However, due to the sensitive nature and difficulties in publicly acquiring medical data, only 2 open sourced COVID CT datasets with images containing clinical findings of COVID-19 could be found. Applying existing deep learning models to the limited CT scans can distinguish COVID-19 and non-COVID-19 CT images but with lesser accuracy.</p>
+
+            <p>As on 15th September 2020, the total cases of SARS-CoV-2 infected patients in the world has crossed 29
+              million, with more than 930,000 deaths occurring due to the virus. Real time RT-PCR (Reverse Transcription
+              Polymerase Chain Reaction), which is the standard detection method for COVID-19, is likely to have low
+              detection rate in early stages of the infection possibly due to less viral load in the patients. On the
+              other hand, in comparison to RT-PCR, patterns obtained from radiography on chest CT scans show higher
+              sensitivity and specificity. However, due to the sensitive nature and difficulties in publicly acquiring
+              medical data, only 2 open sourced COVID CT datasets with images containing clinical findings of COVID-19
+              could be found. Applying existing deep learning models to the limited CT scans can distinguish COVID-19
+              and non-COVID-19 CT images but with lesser accuracy.</p>
           </div>
         </div>
-		<br>
-		
-		<p> The paper proposes to use existing deep learning-based frameworks on an augmented dataset consisting of pixel scaled images (of the original CT images) and the original CT images to diagnose COVID-19 infection. Since this is a binary classification problem the paper proposes to use Convolutional Neural Networks (CNN) to classify CT images into infected and not infected categories. The implementation is done with Keras and Tensorflow using an 80/20 ratio for training and validation. The proposed methodology (using pixel scaled images) achieved a validation accuracy of over 90% in detecting COVID-19 with an F1-score of 0.96 compared to the best F1-score of 0.86 on the original dataset.</p>
-    <br>
-	
-	    <h4>Problem Statement</h4>
-		<p>Antibodies are the human immune system’s response to fight off diseases and can be used to detect if people have been infected by a particular micro-organism. Antibodies are released in response to antigens which are pathogen specific. Antibodies bind themselves to specific parts of the pathogen depending on the antigen, thereby neutralizing or tagging it for other immune responses. Based on these bindings, antibody or antigen based diagnostic tests can be developed for disease detection [5]. In case of COVID-19 detection, antigen testing is done using a respiratory sample, preferably nose or throat of the suspected individuals to detect if the virus is present in the patient. In case the target antigen from the virus is present in a given sample in sufficient concentrations, it binds itself to specific antibodies which are fixed onto strips of paper enclosed inside a plastic container. This binding of antibodies creates a visually detectable signal (change of colour) in under 30 min [6]. Due to the quicker detection times, these tests are also called rapid antigen tests. However, rapid antigen tests are prone to lower sensitivity rates typically in the range of 34 to 80%. Owing to these numbers, the test might result in a lot of false negatives due to which more than half of the infected patients may be missed by the test.</p>
-		
-		<h4>Proposed methodology</h4>
-		<p>CT scans are relatively easy to obtain and analyse for medical professionals. Figure 1 shows a sample CT scan of a patient infected with SARS-CoV-2, with the infected area circled by a trained medical examiner. However, challenges like limited data availability, patient data privacy and extensive time required to make the datasets are some of the issues which concern the Deep Learning community when it comes to developing computer assisted diagnostic solutions in the medical domain. However, in recent years, the challenge of limited data availability has been solved by transfer learning up to a certain extent.</p> 
-		
-    <div class="row">
-		<div class="col" style="max-width: 420px;">
-		<img src="assets/img/ct-scan-fig1.jpg" width="400px">
-		<p><b>Fig.1</b> Sample CT scan of a patient with COVID-19</p>		
-    </div>
-  
-    <div class="col">
-    <p>Initially we have used weights of pre trained model trained on plant pathology 2020 dataset. Last layer of this pretrained model architecture is a fully connected layer that has a softmax activation function. Feature maps from this model is used as an input to the Region Proposal network.</p>
-    	
-		
-	<p>The logic behind transfer learning is to transfer model knowledge from a larger dataset to a model working with limited data. Since transfer learning can train deep neural networks with relatively less data on a pre-trained model, it is very popular in the Deep Learning community.</p>
-	  
-    </div>
-    </div>     
-      
-       
-    <p>Transfer learning works by using the weights of the early convolutional layers as they extract general, basic features such as corners and edges, patterns and gradients which are applicable across images. It is the upper layers which identify specific features which are very specific to a dataset such as the eyes or nose in a face dataset. Since the low-level features are shared among images, an existing model can be trained on a relatively new dataset containing few images along with hyperparameter tuning to get better overall accuracy. Since CT scan images are relatively hard to come by due to reasons such as patient data privacy and extensive preparation times, open-sourced Chest CT scan datasets have been used. However, since the dataset contains a smaller number of images, transfer learning has applied on existing architectures which were previously trained on the ImageNet dataset. Instead of developing a new framework/architecture for working with the CT scan images, existing architectures which have performed well on real world tasks and competitions such as the ImageNet detection, ImageNet localization, COCO detection and COCO segmentation have been used. Architectures like AlexNet, VGG, ZFNet, GoogleNet, DenseNet etc. and multiple variants of the above-mentioned architectures have been used for training on this dataset. However, due to obvious limitations, results of only a few architectures which had better result than the others have been presented in this paper.</p>
-	
-	
-	</div>
+        <br>
+
+        <p> The paper proposes to use existing deep learning-based frameworks on an augmented dataset consisting of
+          pixel scaled images (of the original CT images) and the original CT images to diagnose COVID-19 infection.
+          Since this is a binary classification problem the paper proposes to use Convolutional Neural Networks (CNN) to
+          classify CT images into infected and not infected categories. The implementation is done with Keras and
+          Tensorflow using an 80/20 ratio for training and validation. The proposed methodology (using pixel scaled
+          images) achieved a validation accuracy of over 90% in detecting COVID-19 with an F1-score of 0.96 compared to
+          the best F1-score of 0.86 on the original dataset.</p>
+        <br>
+
+        <h4>Problem Statement</h4>
+        <p>Antibodies are the human immune system’s response to fight off diseases and can be used to detect if people
+          have been infected by a particular micro-organism. Antibodies are released in response to antigens which are
+          pathogen specific. Antibodies bind themselves to specific parts of the pathogen depending on the antigen,
+          thereby neutralizing or tagging it for other immune responses. Based on these bindings, antibody or antigen
+          based diagnostic tests can be developed for disease detection [5]. In case of COVID-19 detection, antigen
+          testing is done using a respiratory sample, preferably nose or throat of the suspected individuals to detect
+          if the virus is present in the patient. In case the target antigen from the virus is present in a given sample
+          in sufficient concentrations, it binds itself to specific antibodies which are fixed onto strips of paper
+          enclosed inside a plastic container. This binding of antibodies creates a visually detectable signal (change
+          of colour) in under 30 min [6]. Due to the quicker detection times, these tests are also called rapid antigen
+          tests. However, rapid antigen tests are prone to lower sensitivity rates typically in the range of 34 to 80%.
+          Owing to these numbers, the test might result in a lot of false negatives due to which more than half of the
+          infected patients may be missed by the test.</p>
+
+        <h4>Proposed methodology</h4>
+        <p>CT scans are relatively easy to obtain and analyse for medical professionals. Figure 1 shows a sample CT scan
+          of a patient infected with SARS-CoV-2, with the infected area circled by a trained medical examiner. However,
+          challenges like limited data availability, patient data privacy and extensive time required to make the
+          datasets are some of the issues which concern the Deep Learning community when it comes to developing computer
+          assisted diagnostic solutions in the medical domain. However, in recent years, the challenge of limited data
+          availability has been solved by transfer learning up to a certain extent.</p>
+
+        <div class="row">
+          <div class="col" style="max-width: 420px;">
+            <img src="assets/img/ct-scan-fig1.jpg" width="400px">
+            <p><b>Fig.1</b> Sample CT scan of a patient with COVID-19</p>
+          </div>
+
+          <div class="col">
+            <p>Initially we have used weights of pre trained model trained on plant pathology 2020 dataset. Last layer
+              of this pretrained model architecture is a fully connected layer that has a softmax activation function.
+              Feature maps from this model is used as an input to the Region Proposal network.</p>
+
+
+            <p>The logic behind transfer learning is to transfer model knowledge from a larger dataset to a model
+              working with limited data. Since transfer learning can train deep neural networks with relatively less
+              data on a pre-trained model, it is very popular in the Deep Learning community.</p>
+
+          </div>
+        </div>
+
+
+        <p>Transfer learning works by using the weights of the early convolutional layers as they extract general, basic
+          features such as corners and edges, patterns and gradients which are applicable across images. It is the upper
+          layers which identify specific features which are very specific to a dataset such as the eyes or nose in a
+          face dataset. Since the low-level features are shared among images, an existing model can be trained on a
+          relatively new dataset containing few images along with hyperparameter tuning to get better overall accuracy.
+          Since CT scan images are relatively hard to come by due to reasons such as patient data privacy and extensive
+          preparation times, open-sourced Chest CT scan datasets have been used. However, since the dataset contains a
+          smaller number of images, transfer learning has applied on existing architectures which were previously
+          trained on the ImageNet dataset. Instead of developing a new framework/architecture for working with the CT
+          scan images, existing architectures which have performed well on real world tasks and competitions such as the
+          ImageNet detection, ImageNet localization, COCO detection and COCO segmentation have been used. Architectures
+          like AlexNet, VGG, ZFNet, GoogleNet, DenseNet etc. and multiple variants of the above-mentioned architectures
+          have been used for training on this dataset. However, due to obvious limitations, results of only a few
+          architectures which had better result than the others have been presented in this paper.</p>
+
+
+      </div>
     </section><!-- End Portfolio Details Section -->
 
   </main><!-- End #main -->
-  
-      	    <section id="team" class="team">
-      <div class="container">
-        <h3>Team</h3>
-		<div class="row">
-		  <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/Untitled-9.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Amit Gawade</h4>
-                <span>Senior Innovation Engineer</span>
-                <p>REDX WeSchool, Mumbai</p>
-                
-              </div>
-            </div>
-          </div>
 
-          <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/Untitled-10.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Dr. Subodh Deolekar</h4>
-                <span>Lead Research Engineer</span>		
-                <p>Assistant Prof. Research & Business Analytics<br>at Welingkar Institute</p>               
-              </div>
-            </div>
-          </div>
-		  
-		    <div class="col-lg-6">
-            <div class="member d-flex align-items-start">
-              <div class="pic"><img src="assets/img/team/Untitled-4.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sushant Shetty</h4>                								
-                <span>Innovation Engineer</span>
-		<p>REDX WeSchool, Mumbai</p>
-              </div>
-            </div>
-          </div>
-		  </div>
-		  </section>
-		  
-		<!-- ======= Footer ======= -->
-<footer id="footer">
-  <div class="footer-top">
+  <section id="team" class="team">
     <div class="container">
+      <h3>Team</h3>
       <div class="row">
+        <div class="col-lg-6">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/team/Untitled-9.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>Amit Gawade</h4>
+              <span>Senior Innovation Engineer</span>
+              <p>REDX WeSchool, Mumbai</p>
 
-        <div class="col-lg-3 col-md-6">
-          <div class="footer-info">
-            <h3>REDX WeSchool</h3>
-            <p>
-             Welingkar Institute of Management Development and Research, <br>
-             Lakhamsi Nappu Road,<br>
-             Matunga East, Mumbai, Maharashtra 400019<br><br>
-            </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/team/Untitled-10.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>Dr. Subodh Deolekar</h4>
+              <span>Lead Research Engineer</span>
+              <p>Assistant Prof. Research & Business Analytics<br>at Welingkar Institute</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="member d-flex align-items-start">
+            <div class="pic"><img src="assets/img/team/Untitled-4.jpg" class="img-fluid" alt=""></div>
+            <div class="member-info">
+              <h4>Sushant Shetty</h4>
+              <span>Innovation Engineer</span>
+              <p>REDX WeSchool, Mumbai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="footer-info">
+              <h3>REDX WeSchool</h3>
+              <p>
+                Welingkar Institute of Management Development and Research, <br>
+                Lakhamsi Nappu Road,<br>
+                Matunga East, Mumbai, Maharashtra 400019<br><br>
+              </p>
             </div>
           </div>
           <div class="col-lg-3 col-md-6"></div>
@@ -195,21 +245,23 @@
             <strong>Phone:</strong> 022 2419 8300 Extn: 5045<br>
             <strong>Email:</strong> redx@welingkarmail.org<br>
             <div class="footer-info">
-            <div class="social-links mt-3">
-              <a href="https://twitter.com/redxweschool" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="https://www.facebook.com/redxweschool" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/redxweschool/" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="https://www.linkedin.com/school/6582614/admin/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
-              <a href="https://www.youtube.com/channel/UCcwe010A399T4hGu9b9nW4w" class="youtube"><i class="bx bxl-youtube"></i></a>
-            </div>
+              <div class="social-links mt-3">
+                <a href="https://twitter.com/redxweschool" class="twitter"><i class="bx bxl-twitter"></i></a>
+                <a href="https://www.facebook.com/redxweschool" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/redxweschool/" class="instagram"><i class="bx bxl-instagram"></i></a>
+                <a href="https://www.linkedin.com/school/6582614/admin/" class="linkedin"><i
+                    class="bx bxl-linkedin"></i></a>
+                <a href="https://www.youtube.com/channel/UCcwe010A399T4hGu9b9nW4w" class="youtube"><i
+                    class="bx bxl-youtube"></i></a>
+              </div>
             </div>
           </div>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
-<!-- End Footer -->  
+  <!-- End Footer -->
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
