@@ -110,6 +110,15 @@
   padding: 0;
 }
 
+
+.redxtext{
+    display: inline-block;
+    min-height: 1rem;
+    max-height: 2rem;
+    margin-top: 20px;
+}
+
+
 @media (max-width: 1199px) {
   .u-section-1 .u-sheet-1 {
     min-height: 484px;
